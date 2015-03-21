@@ -19,15 +19,9 @@ public class Truck {
 
     private Date arrivalDate;
 
-    @OneToMany
-    @JoinColumn(name="truckState_id", nullable=false, updatable=false)
-    private TruckTruckState truckTruckState;
-
-
-    public Truck(String identificationNumber, Date arrivalDate, TruckTruckState truckTruckState) {
+    public Truck(String identificationNumber, Date arrivalDate) {
         this.identificationNumber = identificationNumber;
         this.arrivalDate = arrivalDate;
-        this.truckTruckState = truckTruckState;
     }
 
     public int getId() {
@@ -52,13 +46,5 @@ public class Truck {
 
     public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
-    }
-
-    public TruckTruckState getTruckState() {
-        return truckTruckState;
-    }
-
-    public void setTruckState(TruckTruckState truckState) {
-        this.truckTruckState = truckTruckState;
     }
 }
