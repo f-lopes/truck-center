@@ -6,12 +6,13 @@ import java.util.Date;
 /**
  * Created by Maxime on 21/03/2015.
  */
+@Entity
+@Table(name = "Driver")
 public class Driver {
 
     @Id
     @GeneratedValue
-    private int id;
-
+    private Integer id;
 
     private String mail;
 
@@ -23,23 +24,25 @@ public class Driver {
     @JoinColumn(name="id", nullable=false, updatable=false)
     private Truck truck;
 
-    public Driver(String mail, String password, Date arrivalDate, Truck truck) {
+	public Driver() {
+	}
+
+	public Driver(String mail, String password, Date arrivalDate, Truck truck) {
         this.mail = mail;
         this.password = password;
         this.arrivalDate = arrivalDate;
         this.truck = truck;
     }
 
+	public Integer getId() {
+		return id;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getMail() {
+	public String getMail() {
         return mail;
     }
 

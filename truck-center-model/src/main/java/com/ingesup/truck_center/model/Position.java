@@ -1,14 +1,13 @@
 package com.ingesup.truck_center.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by Maxime on 20/03/2015.
  */
+@Entity
+@Table (name = "Position")
 public class Position {
     @Id
     @GeneratedValue

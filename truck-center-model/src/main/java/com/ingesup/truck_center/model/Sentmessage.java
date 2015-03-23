@@ -1,14 +1,13 @@
 package com.ingesup.truck_center.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by Maxime on 21/03/2015.
  */
-public class Sentmessage {
+@Entity
+@Table (name = "SentMessage")
+public class SentMessage {
     @Id
     @GeneratedValue
     private int id;
@@ -21,7 +20,7 @@ public class Sentmessage {
     @JoinColumn(name="id", nullable=false, updatable=false)
     private DriverMessage driverMessage;
 
-    public Sentmessage(Driver driver, DriverMessage driverMessage) {
+    public SentMessage(Driver driver, DriverMessage driverMessage) {
         this.driver = driver;
         this.driverMessage = driverMessage;
     }

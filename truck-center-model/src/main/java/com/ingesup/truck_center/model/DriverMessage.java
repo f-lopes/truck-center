@@ -5,6 +5,8 @@ import javax.persistence.*;
 /**
  * Created by Maxime on 21/03/2015.
  */
+@Entity
+@Table (name = "DriverMessage")
 public class DriverMessage {
     @Id
     @GeneratedValue

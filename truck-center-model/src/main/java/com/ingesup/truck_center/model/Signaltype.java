@@ -1,11 +1,15 @@
 package com.ingesup.truck_center.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by Maxime on 21/03/2015.
  */
+@Entity
+@Table (name = "SignalType")
 public class Signaltype {
 
     @Id

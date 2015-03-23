@@ -1,6 +1,9 @@
 package com.ingesup.truck_center.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -13,26 +16,29 @@ public class Truck {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 
     private String identificationNumber;
 
     private Date arrivalDate;
 
-    public Truck(String identificationNumber, Date arrivalDate) {
+	public Truck() {
+	}
+
+	public Truck(String identificationNumber, Date arrivalDate) {
         this.identificationNumber = identificationNumber;
         this.arrivalDate = arrivalDate;
     }
 
-    public int getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getIdentificationNumber() {
+	public String getIdentificationNumber() {
         return identificationNumber;
     }
 

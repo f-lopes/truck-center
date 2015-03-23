@@ -15,11 +15,11 @@ public class TruckTruckState {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+    @JoinColumn(name="id", nullable = false, insertable = false, updatable = false)
     private Truck truck;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+    @JoinColumn(name="id", nullable = false, insertable = false, updatable = false)
     private TruckState truckState;
 
     private Date dateEvent;
