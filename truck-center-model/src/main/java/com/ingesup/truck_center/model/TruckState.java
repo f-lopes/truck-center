@@ -10,21 +10,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TruckState")
-public class TruckState {
-
-	@Id
-	@GeneratedValue
-	private Integer id;
+public class TruckState extends BaseEntity {
 
 	public TruckState() {
-
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 }

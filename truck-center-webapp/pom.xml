@@ -25,7 +25,11 @@
 
         <thymeleaf-spring4.version>2.1.4.RELEASE</thymeleaf-spring4.version>
 
+        <http-client.version>4.4</http-client.version>
+
         <sql-jdbc-connector.version>1.0.0.RELEASE</sql-jdbc-connector.version>
+
+        <jstl.version>1.2</jstl.version>
 
         <spring.security.version>3.2.5.RELEASE</spring.security.version>
         <spring.security-test.version>4.0.0.RC1</spring.security-test.version>
@@ -41,6 +45,12 @@
         <dependency>
             <groupId>com.ingesup</groupId>
             <artifactId>truck-center-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>fr.florianlopes</groupId>
+            <artifactId>activiti-rest-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -81,9 +91,21 @@
         </dependency>
 
         <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring4</artifactId>
             <version>${thymeleaf-spring4.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${http-client.version}</version>
         </dependency>
 
         <dependency>

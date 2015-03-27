@@ -1,5 +1,6 @@
 package com.ingesup.truck.security;
 
+import com.ingesup.truck_center.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,7 +11,7 @@ import java.util.Collection;
  * <florian.lopes@outlook.com>
  */
 // TODO map Model user -> SecurityUser (needs model for now)
-public class TruckCenterUserDetails implements UserDetails {
+public class TruckCenterUserDetails extends User implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -19,12 +20,12 @@ public class TruckCenterUserDetails implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		return null;
+		return this.password;
 	}
 
 	@Override
 	public String getUsername() {
-		return null;
+		return this.email;
 	}
 
 	@Override
@@ -45,5 +46,10 @@ public class TruckCenterUserDetails implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return false;
+	}
+
+	public static UserDetails fromUser(User user) {
+		return null;
+
 	}
 }

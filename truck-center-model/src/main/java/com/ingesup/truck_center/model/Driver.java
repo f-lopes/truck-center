@@ -8,15 +8,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "Driver")
-public class Driver {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
-
-    private String mail;
-
-    private String password;
+@PrimaryKeyJoinColumn (name = "driver_id", referencedColumnName = "id")
+public class Driver extends User {
 
     private Date arrivalDate;
 
@@ -28,34 +21,10 @@ public class Driver {
 	}
 
 	public Driver(String mail, String password, Date arrivalDate, Truck truck) {
-        this.mail = mail;
+        this.email = mail;
         this.password = password;
         this.arrivalDate = arrivalDate;
         this.truck = truck;
-    }
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Date getArrivalDate() {

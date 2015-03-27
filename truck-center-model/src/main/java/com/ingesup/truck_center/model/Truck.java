@@ -12,11 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "Truck")
-public class Truck {
-
-	@Id
-	@GeneratedValue
-	private Integer id;
+public class Truck extends BaseEntity {
 
     private String identificationNumber;
 
@@ -29,14 +25,6 @@ public class Truck {
         this.identificationNumber = identificationNumber;
         this.arrivalDate = arrivalDate;
     }
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getIdentificationNumber() {
         return identificationNumber;

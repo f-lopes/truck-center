@@ -8,10 +8,7 @@ import java.util.Date;
  */
 @Entity
 @Table (name = "Position")
-public class Position {
-    @Id
-    @GeneratedValue
-    private int id;
+public class Position extends BaseEntity {
 
     private double latitude;
 
@@ -28,14 +25,6 @@ public class Position {
         this.longitude = longitude;
         this.positionDate = positionDate;
         this.truck = truck;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public double getLatitude() {
