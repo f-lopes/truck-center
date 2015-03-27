@@ -14,6 +14,9 @@ public class Signaltype extends BaseEntity {
 
     private String Label;
 
+    public Signaltype() {
+    }
+
     public Signaltype(String label) {
         Label = label;
     }

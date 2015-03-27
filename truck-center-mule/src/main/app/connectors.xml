@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:esper="http://www.mulesoft.org/schema/mule/esper" xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd
+http://www.mulesoft.org/schema/mule/esper http://www.mulesoft.org/schema/mule/esper/current/mule-esper.xsd">
+
+    <jms:activemq-connector name="activeMQConnector" brokerURL="${activemq.broker.url}" username="${activemq.broker.username}" password="${activemq.broker.password}" doc:name="Active MQ"/>
+    
+    <esper:config name="esperConnector" configuration="esper-configuration.xml" doc:name="Esper">
+    	
+    </esper:config>
+    
+</mule>

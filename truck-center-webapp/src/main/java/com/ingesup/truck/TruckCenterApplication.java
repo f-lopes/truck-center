@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Created by lopes_f on 3/23/2015.
@@ -15,7 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan (basePackages = "com.ingesup.truck")
 @EnableAutoConfiguration
 @EntityScan("com.ingesup.truck_center.model")
-@EnableJpaRepositories (basePackages = "com.ingesup.truck.repository")
+//@EnableJpaRepositories (basePackages = "com.ingesup.truck.repository")
 public class TruckCenterApplication {
 
 	public static void main(String[] args) {

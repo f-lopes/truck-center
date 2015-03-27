@@ -13,7 +13,7 @@ import javax.sql.DataSource;
  * Created by lopes_f on 3/24/2015.
  * <florian.lopes@outlook.com>
  */
-//@Configuration
+@Configuration
 public class ActivitiConfig {
 
 	@Autowired
