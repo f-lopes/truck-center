@@ -11,11 +11,11 @@ import java.util.Date;
 public class TruckTruckState extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name="id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name="truck_id", nullable = false, insertable = false, updatable = false)
     private Truck truck;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name="truck_state_id", nullable = false, insertable = false, updatable = false)
     private TruckState truckState;
 
     private Date dateEvent;

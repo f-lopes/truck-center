@@ -10,13 +10,12 @@ import javax.persistence.*;
 public class DriverMessage extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+//    @JoinColumn(name="driver_id")
     private Driver driver;
 
-    @OneToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+    @ManyToOne
+    @JoinColumn(name="signal_type_id", nullable=false, updatable=false)
     private Signaltype signaltype;
-
 
     private String message;
 

@@ -11,7 +11,7 @@ import java.util.Collection;
  * <florian.lopes@outlook.com>
  */
 // TODO map Model user -> SecurityUser (needs model for now)
-public class TruckCenterUserDetails extends User implements UserDetails {
+public class TruckCenterUserDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -20,12 +20,12 @@ public class TruckCenterUserDetails extends User implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		return this.password;
+		return null;
 	}
 
 	@Override
 	public String getUsername() {
-		return this.email;
+		return null;
 	}
 
 	@Override

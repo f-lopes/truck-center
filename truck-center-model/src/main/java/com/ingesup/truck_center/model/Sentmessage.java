@@ -10,11 +10,11 @@ import javax.persistence.*;
 public class SentMessage extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+//    @JoinColumn(name="driver_id", nullable=false, updatable=false)
     private Driver driver;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+//    @JoinColumn(name="driver_message_id", nullable=false, updatable=false)
     private DriverMessage driverMessage;
 
     public SentMessage(Driver driver, DriverMessage driverMessage) {
