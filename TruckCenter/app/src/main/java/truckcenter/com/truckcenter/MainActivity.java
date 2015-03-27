@@ -1,5 +1,6 @@
 package truckcenter.com.truckcenter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,7 @@ import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 import truckcenter.com.truckcenter.fragments.ActionsFragment;
 import truckcenter.com.truckcenter.fragments.MessagesFragment;
+import truckcenter.com.truckcenter.service.TrackerService;
 
 
 public class MainActivity extends ActionBarActivity implements MaterialTabListener {
@@ -55,6 +57,16 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
 
         }
 
+        Intent intent = new Intent(this, TrackerService.class);
+        startService(intent);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent intent = new Intent(this, TrackerService.class);
+        stopService(intent);
     }
 
 
