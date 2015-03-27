@@ -1,5 +1,6 @@
 package com.ingesup.truck.security;
 
+import com.ingesup.truck_center.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -45,5 +46,10 @@ public class TruckCenterUserDetails implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return false;
+	}
+
+	public static UserDetails fromUser(User user) {
+		return null;
+
 	}
 }

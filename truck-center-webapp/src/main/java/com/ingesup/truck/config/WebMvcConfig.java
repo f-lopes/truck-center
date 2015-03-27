@@ -23,7 +23,8 @@ import java.util.List;
  * Created by lopes_f on 3/23/2015.
  * <florian.lopes@outlook.com>
  */
-@Configuration@ComponentScan (basePackages = "com.ingesup.truck")
+@Configuration
+@ComponentScan (basePackages = "com.ingesup.truck")
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Bean

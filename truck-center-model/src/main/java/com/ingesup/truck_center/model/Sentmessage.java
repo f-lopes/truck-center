@@ -7,30 +7,19 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "SentMessage")
-public class SentMessage {
-    @Id
-    @GeneratedValue
-    private int id;
+public class SentMessage extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+//    @JoinColumn(name="driver_id", nullable=false, updatable=false)
     private Driver driver;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+//    @JoinColumn(name="driver_message_id", nullable=false, updatable=false)
     private DriverMessage driverMessage;
 
     public SentMessage(Driver driver, DriverMessage driverMessage) {
         this.driver = driver;
         this.driverMessage = driverMessage;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Driver getDriver() {

@@ -7,19 +7,15 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "DriverMessage")
-public class DriverMessage {
-    @Id
-    @GeneratedValue
-    private int id;
+public class DriverMessage extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+//    @JoinColumn(name="driver_id")
     private Driver driver;
 
-    @OneToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+    @ManyToOne
+    @JoinColumn(name="signal_type_id", nullable=false, updatable=false)
     private Signaltype signaltype;
-
 
     private String message;
 
@@ -27,14 +23,6 @@ public class DriverMessage {
         this.driver = driver;
         this.signaltype = signaltype;
         this.message = message;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Driver getDriver() {

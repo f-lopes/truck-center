@@ -8,18 +8,14 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "Truck_TruckState")
-public class TruckTruckState {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public class TruckTruckState extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name="id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name="truck_id", nullable = false, insertable = false, updatable = false)
     private Truck truck;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name="truck_state_id", nullable = false, insertable = false, updatable = false)
     private TruckState truckState;
 
     private Date dateEvent;
@@ -28,14 +24,6 @@ public class TruckTruckState {
         this.truck = truck;
         this.truckState = truckState;
         this.dateEvent = dateEvent;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Truck getTruck() {

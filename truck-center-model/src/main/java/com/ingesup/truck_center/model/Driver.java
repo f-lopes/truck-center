@@ -2,60 +2,42 @@ package com.ingesup.truck_center.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Maxime on 21/03/2015.
  */
 @Entity
 @Table(name = "Driver")
-public class Driver {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
-
-    private String mail;
-
-    private String password;
+//@PrimaryKeyJoinColumn (name = "driver_id", referencedColumnName = "id")
+public class Driver extends User {
 
     private Date arrivalDate;
 
     @OneToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
+    @JoinColumn(name="truck_id", nullable=false, updatable=false)
     private Truck truck;
+
+    @OneToMany (cascade = CascadeType.ALL)
+    @JoinColumn(name = "driver_id")
+    private Set<DriverMessage> messages;
 
 	public Driver() {
 	}
 
 	public Driver(String mail, String password, Date arrivalDate, Truck truck) {
-        this.mail = mail;
+        this.email = mail;
         this.password = password;
         this.arrivalDate = arrivalDate;
         this.truck = truck;
     }
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getMail() {
-        return mail;
+    public Set<DriverMessage> getMessages() {
+        return messages;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMessages(Set<DriverMessage> messages) {
+        this.messages = messages;
     }
 
     public Date getArrivalDate() {

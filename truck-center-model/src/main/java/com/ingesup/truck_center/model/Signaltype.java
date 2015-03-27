@@ -10,24 +10,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table (name = "SignalType")
-public class Signaltype {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public class Signaltype extends BaseEntity {
 
     private String Label;
 
     public Signaltype(String label) {
         Label = label;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getLabel() {
