@@ -11,6 +11,7 @@ public class DriverMessage extends BaseEntity {
 
 //    @ManyToOne
 //    @JoinColumn(name="driver_id")
+    @ManyToOne
     private Driver driver;
 
     @ManyToOne

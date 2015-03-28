@@ -18,8 +18,7 @@ public class Driver extends User {
     @JoinColumn(name="truck_id", nullable=false, updatable=false)
     private Truck truck;
 
-    @OneToMany (cascade = CascadeType.ALL)
-    @JoinColumn(name = "driver_id")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "driver")
     private Set<DriverMessage> messages;
 
 	public Driver() {

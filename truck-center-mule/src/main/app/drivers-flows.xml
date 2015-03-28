@@ -11,6 +11,7 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 	<http:listener-config name="HTTP_Request_alerts-REST-API" host="${alerts-rest-api.host}" port="${alerts-rest-api.port}" doc:name="HTTP Request Configuration for Alerts REST API"/>
 
 	<flow name="drivers-positions-consumer-flow">
+		<!-- TODO tests : send message ; consume it -->
 		<jms:inbound-endpoint connector-ref="activeMQConnector" queue="drivers-positions.queue" doc:name="JMS"/>
 			
 		<logger message="Consuming PositionNotification to send to Esper : #[payload]" level="INFO" doc:name="Logger"/>

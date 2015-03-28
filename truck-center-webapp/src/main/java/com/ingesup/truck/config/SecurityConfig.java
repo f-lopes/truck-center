@@ -1,6 +1,6 @@
 package com.ingesup.truck.config;
 
-import com.ingesup.truck.service.UserServiceImpl;
+import com.ingesup.truck.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

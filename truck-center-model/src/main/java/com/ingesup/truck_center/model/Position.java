@@ -17,7 +17,6 @@ public class Position extends BaseEntity {
     private Date positionDate;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false, updatable=false)
     private Truck truck;
 
     public Position(double latitude, double longitude, Date positionDate, Truck truck) {
@@ -25,6 +24,9 @@ public class Position extends BaseEntity {
         this.longitude = longitude;
         this.positionDate = positionDate;
         this.truck = truck;
+    }
+
+    public Position() {
     }
 
     public double getLatitude() {
