@@ -9,15 +9,19 @@ import javax.persistence.*;
 @Table (name = "DriverMessage")
 public class DriverMessage extends BaseEntity {
 
-    @ManyToOne
+//    @ManyToOne
 //    @JoinColumn(name="driver_id")
+    @ManyToOne
     private Driver driver;
 
     @ManyToOne
-    @JoinColumn(name="signal_type_id", nullable=false, updatable=false)
+//    @JoinColumn(name="signal_type_id", nullable=false, updatable=false)
     private Signaltype signaltype;
 
     private String message;
+
+    public DriverMessage() {
+    }
 
     public DriverMessage(Driver driver, Signaltype signaltype, String message) {
         this.driver = driver;

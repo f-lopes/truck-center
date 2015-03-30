@@ -6,8 +6,8 @@ import java.util.Date;
 /**
  * Created by Maxime on 20/03/2015.
  */
-@Entity
-@Table(name = "Truck_TruckState")
+/*@Entity
+@Table(name = "Truck_TruckState")*/
 public class TruckTruckState extends BaseEntity {
 
     @ManyToOne
