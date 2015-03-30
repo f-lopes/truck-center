@@ -1,3 +1,7 @@
+- Launch using Spring Boot : mvn clean package && java -jar target/truck-center-webapp-0.0.1-SNAPSHOT.jar
+
+
+SQL Server version : 
 Requires SQLServer jdbc-connector :
 
 mvn install:install-file -Dfile=<path-to-file> -DgroupId=com.microsoft -DartifactId=sql-jdbc-connetor -Dversion=1.0.0.RELEASE -Dpackaging=jar
