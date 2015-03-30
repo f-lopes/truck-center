@@ -4,6 +4,7 @@ import com.ingesup.truck.form.AddDriverForm;
 import com.ingesup.truck.service.DriverService;
 import com.ingesup.truck.util.MessageUtil;
 import com.ingesup.truck_center.model.Driver;
+import com.ingesup.truck_center.model.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -51,6 +52,7 @@ public class DriverController {
 		}
 
 		final Driver newDriver = addDriverForm.getDriver();
+		newDriver.addRole(RoleEnum.ROLE_DRIVER);
 		this.driverService.add(newDriver);
 
 		redirectAttributes.addFlashAttribute("flash", MessageUtil.returnSuccess(

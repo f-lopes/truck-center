@@ -1,5 +1,6 @@
 package com.ingesup.truck.config;
 
+import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.spring.ProcessEngineFactoryBean;
@@ -35,6 +36,7 @@ public class ActivitiConfig {
 		SpringProcessEngineConfiguration processEngineConfiguration = new SpringProcessEngineConfiguration();
 		processEngineConfiguration.setDataSource(this.dataSource);
 		processEngineConfiguration.setDeploymentResources(getDeploymentResources());
+		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
 
 		return processEngineConfiguration;
 	}

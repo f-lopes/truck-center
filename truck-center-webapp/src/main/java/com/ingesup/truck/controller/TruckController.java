@@ -1,11 +1,9 @@
 package com.ingesup.truck.controller;
 
-import com.ingesup.truck.form.AddDriverForm;
 import com.ingesup.truck.form.AddTruckForm;
 import com.ingesup.truck.service.DriverService;
 import com.ingesup.truck.service.TruckService;
 import com.ingesup.truck.util.MessageUtil;
-import com.ingesup.truck_center.model.Driver;
 import com.ingesup.truck_center.model.Truck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

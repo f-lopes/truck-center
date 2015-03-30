@@ -1,16 +1,14 @@
 package com.ingesup.truck.service;
 
+import org.activiti.engine.task.Task;
+
 /**
  * Created by lopes_f on 3/25/2015.
  * <florian.lopes@outlook.com>
  */
 public interface ActivitiService {
 
-	String startProcess(final String processDefinitionKey);
+	Task getCurrentTaskByDriverId(String driverId);
 
-	void claimTask(final String taskId, String username);
-
-	void completeTask(final String processId, final String taskId);
-
-	void getTasksForUser(final String username);
+	Task getCurrentTaskByAlertId(String alertId);
 }

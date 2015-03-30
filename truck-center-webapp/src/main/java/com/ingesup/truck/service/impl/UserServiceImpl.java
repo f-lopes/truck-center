@@ -1,12 +1,9 @@
 package com.ingesup.truck.service.impl;
 
 import com.ingesup.truck.repository.UserRepository;
-import com.ingesup.truck.security.TruckCenterUserDetails;
 import com.ingesup.truck_center.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.mapping.Attributes2GrantedAuthoritiesMapper;
-import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
 import org.springframework.security.core.authority.mapping.SimpleAttributes2GrantedAuthoritiesMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
