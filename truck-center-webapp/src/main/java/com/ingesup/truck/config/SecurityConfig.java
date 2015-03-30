@@ -36,11 +36,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**");
-	}
-
-	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers("/**", "/login", "/logout").permitAll()
@@ -51,9 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.formLogin().loginPage("/secure/login").loginProcessingUrl("/login").usernameParameter("login").passwordParameter("password")
 				.and()
-				.logout().logoutUrl("/logout").logoutSuccessUrl("/")
-				.and()
-				.antMatcher("/rest/**").httpBasic().realmName("TruckCenter Authentication Service");
+				.logout().logoutUrl("/logout").logoutSuccessUrl("/");
+				/*.and()
+				.antMatcher("/rest*//**").httpBasic().realmName("TruckCenter Authentication Service");*/
 	}
 
 	@Bean

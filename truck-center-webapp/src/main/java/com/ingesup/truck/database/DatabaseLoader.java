@@ -53,7 +53,7 @@ public class DatabaseLoader {
 	}
 
 	private void initAdmin() {
-		User adminUser = new User(truckCenterProperties.getFirstname(),
+		User adminUser = new User(truckCenterProperties.getAdminFirstname(),
 								  truckCenterProperties.getLastname(),
 								  truckCenterProperties.getEmail(),
 								  truckCenterProperties.getPassword());

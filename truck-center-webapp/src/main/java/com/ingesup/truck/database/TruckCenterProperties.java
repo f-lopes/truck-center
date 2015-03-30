@@ -16,17 +16,13 @@ public class TruckCenterProperties {
 
 	private String roles;
 
-	private String email;
+	private String adminEmail;
 
-	private String password;
+	private String adminPassword;
 
-	private String firstname;
+	private String adminFirstname;
 
-	private String lastname;
-
-	private String grades;
-
-	private String courses;
+	private String adminLastname;
 
 	public boolean isInitialize() {
 		return initialize;
@@ -44,51 +40,35 @@ public class TruckCenterProperties {
 		this.roles = roles;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getAdminEmail() {
+		return adminEmail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAdminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getAdminPassword() {
+		return adminPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setAdminPassword(String adminPassword) {
+		this.adminPassword = adminPassword;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getAdminFirstname() {
+		return adminFirstname;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setAdminFirstname(String adminFirstname) {
+		this.adminFirstname = adminFirstname;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getAdminLastname() {
+		return adminLastname;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public String getGrades() {
-		return grades;
-	}
-
-	public void setGrades(String grades) {
-		this.grades = grades;
-	}
-
-	public String getCourses() {
-		return courses;
-	}
-
-	public void setCourses(String courses) {
-		this.courses = courses;
+	public void setAdminLastname(String adminLastname) {
+		this.adminLastname = adminLastname;
 	}
 }

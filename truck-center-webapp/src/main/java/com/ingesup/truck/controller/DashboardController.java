@@ -29,6 +29,7 @@ public class DashboardController {
 	private static final String DASHBOARD_VIEW = "dashboard/home";
 	private static final String DASHBOARD_URL = "/dashboard";
 	private static final String ALERT_VIEW = "alert/view";
+	private static final String INCIDENT_BY_DRIVER_VIEW = "dashboard/incident";
 
 	private final AlertService alertService;
 	private final MessageSource messageSource;
@@ -79,5 +80,13 @@ public class DashboardController {
 		model.addAttribute("alert", alertService.get(alertId));
 
 		return ALERT_VIEW;
+	}
+
+	@RequestMapping(value = "/incidents-by-driver", method = RequestMethod.GET)
+	public String incidentsByDriver(Model model, @RequestParam Integer driverId) {
+		final Task activeTask = taskService.createTaskQuery().active().processVariableValueEquals(ActivitiConstants.DRIVER_ID, driverId).singleResult();
+		model.addAttribute("activeTask", activeTask);
+
+		return INCIDENT_BY_DRIVER_VIEW;
 	}
 }
