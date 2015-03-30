@@ -9,7 +9,23 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import truckcenter.com.truckcenter.model.PositionNotification;
 
 
 public class TrackerService extends Service {
@@ -29,9 +45,13 @@ public class TrackerService extends Service {
                 mLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             }
             if (mLocation != null) {
-                Toast.makeText(getBaseContext(), mLocation.toString(), Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getBaseContext(), "No location", Toast.LENGTH_SHORT).show();
+                // TODO set real truck id
+                PositionNotification position = new PositionNotification();
+                position.setTruck_id(1);
+                position.setLatitude(mLocation.getLatitude());
+                position.setLongitude(mLocation.getLongitude());
+                position.setDate(Calendar.getInstance().getTime());
+                new PostPositionTask(getBaseContext()).execute(position);
             }
             if(started) {
                 start();
@@ -43,7 +63,7 @@ public class TrackerService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         start();
         locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 mLocation = location;
@@ -83,5 +103,4 @@ public class TrackerService extends Service {
         started = true;
         handler.postDelayed(runnable, 5000);
     }
-
 }
