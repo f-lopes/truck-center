@@ -30,6 +30,16 @@ public class User extends BaseEntity {
 	)
 	private Set<Role> roles = new HashSet<Role>();
 
+	public User() {
+	}
+
+	public User(String firstname, String lastname, String email, String password) {
+		this.firstName = firstname;
+		this.lastName = lastname;
+		this.email = email;
+		this.password = password;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -64,6 +74,14 @@ public class User extends BaseEntity {
 
 	public Set<Role> getRoles() {
 		return roles;
+	}
+
+	public void addRole(RoleEnum roleEnum) {
+		if (this.roles == null) {
+			this.roles = new HashSet<>();
+		}
+
+		this.roles.add(new Role(roleEnum));
 	}
 
 	public Set<String> getRolesAsString() {

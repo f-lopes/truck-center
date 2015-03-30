@@ -51,7 +51,7 @@ public class DashboardController {
 		return DASHBOARD_VIEW;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/by-driver", method = RequestMethod.GET)
 	public String alertsByDriver(Model model, @RequestParam Integer driverId, RedirectAttributes redirectAttributes) {
 		try {
 			model.addAttribute("alerts", alertService.getFirstByDriverId(driverId));

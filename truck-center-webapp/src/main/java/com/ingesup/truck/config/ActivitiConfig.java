@@ -1,11 +1,14 @@
 package com.ingesup.truck.config;
 
-import org.activiti.engine.ProcessEngineConfiguration;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
 import org.activiti.spring.ProcessEngineFactoryBean;
 import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import javax.sql.DataSource;
 
@@ -31,8 +34,22 @@ public class ActivitiConfig {
 	public SpringProcessEngineConfiguration processEngineConfiguration() {
 		SpringProcessEngineConfiguration processEngineConfiguration = new SpringProcessEngineConfiguration();
 		processEngineConfiguration.setDataSource(this.dataSource);
+		processEngineConfiguration.setDeploymentResources(getDeploymentResources());
 
 		return processEngineConfiguration;
 	}
 
+	@Bean
+	public RuntimeService runtimeService(SpringProcessEngineConfiguration processEngineConfiguration) {
+		return processEngineConfiguration.getRuntimeService();
+	}
+
+	@Bean
+	public TaskService taskService(SpringProcessEngineConfiguration processEngineConfiguration) {
+		return processEngineConfiguration.getTaskService();
+	}
+
+	private Resource[] getDeploymentResources() {
+		return new ClassPathResource[] {new ClassPathResource("truck-center-driver-stuck-flow.bpmn20.xml")};
+	}
 }

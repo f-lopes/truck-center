@@ -22,13 +22,13 @@ public class Driver extends User {
     private Set<DriverMessage> messages;
 
 	public Driver() {
-	}
+    }
 
-	public Driver(String mail, String password, Date arrivalDate, Truck truck) {
-        this.email = mail;
+    public Driver(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
         this.password = password;
-        this.arrivalDate = arrivalDate;
-        this.truck = truck;
     }
 
     public Set<DriverMessage> getMessages() {

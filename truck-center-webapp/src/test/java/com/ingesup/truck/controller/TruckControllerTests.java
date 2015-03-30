@@ -38,7 +38,7 @@ public class TruckControllerTests {
 	@Before
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders
-				.standaloneSetup(new TruckController(this.truckService))
+				.standaloneSetup(new TruckController(this.truckService, driverService, messageSource))
 				.alwaysDo(print())
 				.build();
 

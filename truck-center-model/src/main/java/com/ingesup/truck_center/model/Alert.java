@@ -13,16 +13,17 @@ import java.util.Date;
 @Table (name = "Alert")
 public class Alert extends BaseEntity {
 
-	private Integer driverId;
-
 	private Date date;
 
-	public Integer getDriverId() {
-		return driverId;
+	@ManyToOne
+	private Driver driver;
+
+	public Driver getDriver() {
+		return driver;
 	}
 
-	public void setDriverId(Integer driverId) {
-		this.driverId = driverId;
+	public void setDriver(Driver driver) {
+		this.driver = driver;
 	}
 
 	public Date getDate() {

@@ -1,9 +1,6 @@
 package com.ingesup.truck_center.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -17,6 +14,9 @@ public class Truck extends BaseEntity {
     private String identificationNumber;
 
     private Date arrivalDate;
+
+    @ManyToOne
+    private Driver driver;
 
 	public Truck() {
 	}
@@ -40,5 +40,13 @@ public class Truck extends BaseEntity {
 
     public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 }
