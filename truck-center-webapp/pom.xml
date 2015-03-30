@@ -7,7 +7,7 @@
     <groupId>com.ingesup</groupId>
     <artifactId>truck-center-webapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>truck-center-webapp</name>
 

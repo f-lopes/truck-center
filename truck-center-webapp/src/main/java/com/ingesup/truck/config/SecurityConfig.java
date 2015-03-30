@@ -50,8 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.exceptionHandling().accessDeniedPage("/access-denied")
 				.and()
 			.formLogin().loginPage("/secure/login").loginProcessingUrl("/login").usernameParameter("login").passwordParameter("password")
-				.and().
-				logout().logoutUrl("/logout").logoutSuccessUrl("/");
+				.and()
+				.logout().logoutUrl("/logout").logoutSuccessUrl("/")
+				.and()
+				.antMatcher("/rest/**").httpBasic().realmName("TruckCenter Authentication Service");
 	}
 
 	@Bean

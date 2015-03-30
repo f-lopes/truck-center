@@ -24,7 +24,7 @@ import java.util.List;
  * <florian.lopes@outlook.com>
  */
 @Configuration
-@ComponentScan (basePackages = "com.ingesup.truck")
+@ComponentScan (basePackages = "com.ingesup.truck.controller")
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
