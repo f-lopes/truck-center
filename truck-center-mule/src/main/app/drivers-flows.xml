@@ -1,45 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:esper="http://www.mulesoft.org/schema/mule/esper" xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:esper="http://www.mulesoft.org/schema/mule/esper"
+	xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/esper http://www.mulesoft.org/schema/mule/esper/current/mule-esper.xsd
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/esper http://www.mulesoft.org/schema/mule/esper/current/mule-esper.xsd
 http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
-http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd">
 
-	<http:listener-config name="HTTP_Request_alerts-REST-API" host="${alerts-rest-api.host}" port="${alerts-rest-api.port}" doc:name="HTTP Request Configuration for Alerts REST API"/>
+	<http:request-config name="HTTP_Request_alerts-REST-API"
+		host="${alerts-rest-api.host}" port="${alerts-rest-api.port}"
+		doc:name="HTTP Request Configuration for Alerts REST API" />
 
 	<flow name="drivers-positions-consumer-flow">
 		<!-- TODO tests : send message ; consume it -->
-		<jms:inbound-endpoint connector-ref="activeMQConnector" queue="drivers-positions.queue" doc:name="JMS"/>
-			
-		<logger message="Consuming PositionNotification to send to Esper : #[payload]" level="INFO" doc:name="Logger"/>
-			
-		<esper:send config-ref="esperConnector" eventPayload-ref="#[payload]" doc:name="Esper"/>
-			
+		<jms:inbound-endpoint connector-ref="activeMQConnector"
+			queue="${drivers-positions.queue}" doc:name="JMS" />
+		<mulexml:xml-to-object-transformer
+			returnClass="com.ingesup.truckcenter.domain.PositionNotification"
+			doc:name="XML to Object" />
+
+		<logger message="Consuming PositionNotification to send to Esper : #[payload]"
+			level="INFO" doc:name="Logger" />
+
+		<esper:send config-ref="esperConfig" eventPayload-ref="#[payload]"
+			doc:name="Esper" />
+
 	</flow>
-	
+
 	<flow name="drivers-alerts-flow">
-		<logger message="Listening for Esper events PositionNotificationEvent : #[payload]" level="INFO" doc:name="Logger"/>
-		
-		<esper:listen statement="${esper.stopped-driver.query}" config-ref="esperConnector" doc:name="Esper (Streaming)"/>
-		
-		<logger message="Found matching events for query ... : #[payload]" level="INFO" doc:name="Logger"/>
-		
-		<logger message="Creating an alert : #[payload]" level="INFO" doc:name="Logger"/>
-		
-		<!-- TODO put Authorization header for Basic authentication against webapp REST API -->
-		
+		<logger
+			message="Listening for Esper events PositionNotificationEvent : #[payload]"
+			level="INFO" doc:name="Logger" />
+
+		<esper:listen statement="${esper.stopped-driver.query}"
+			config-ref="esperConfig" doc:name="Esper (Streaming)" />
+
+		<logger message="Found matching events for query ... : #[payload]"
+			level="INFO" doc:name="Logger" />
+
+		<logger message="Creating an alert : #[payload]" level="INFO"
+			doc:name="Logger" />
+
+		<!-- TODO put Authorization header for Basic authentication against webapp 
+			REST API -->
+
 		<!-- Creates an alert and starts process instance -->
-     	<http:request config-ref="HTTP_Request_alerts-REST-API" path="${alerts-rest-api.path}" method="GET" doc:name="HTTP">
-          <http:request-builder>
-                <http:query-param paramName="type" value="#[message.inboundProperties.'http.query.params'.type]"/>
-                <http:query-param paramName="sentences" value="#[message.inboundProperties.'http.query.params'.sentences]"/>
-            </http:request-builder>
-        </http:request>
-		<http:outbound-endpoint address="${alerts-rest-api.url}" method="POST" />
-		
+		<http:request config-ref="HTTP_Request_alerts-REST-API"
+			path="${alerts-rest-api.path}" method="GET" doc:name="HTTP">
+			<http:request-builder>
+				<http:query-param paramName="type"
+					value="#[message.inboundProperties.'http.query.params'.type]" />
+				<http:query-param paramName="sentences"
+					value="#[message.inboundProperties.'http.query.params'.sentences]" />
+			</http:request-builder>
+		</http:request>
+
 	</flow>
 
 </mule>

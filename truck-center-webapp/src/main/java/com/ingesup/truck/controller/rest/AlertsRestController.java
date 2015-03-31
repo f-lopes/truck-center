@@ -38,7 +38,7 @@ public class AlertsRestController {
 		this.driverService = driverService;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/alerts", method = RequestMethod.POST)
 	public ResponseEntity<String> createAlert(@RequestBody Alert alert) {
 		alert.setDriver(driverService.get(alert.getDriver().getId()));
 		Alert createdAlert = alertService.add(alert);

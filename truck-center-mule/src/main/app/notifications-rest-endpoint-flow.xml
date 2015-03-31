@@ -1,41 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:jersey="http://www.mulesoft.org/schema/mule/jersey" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:json="http://www.mulesoft.org/schema/mule/json"
+	xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:jersey="http://www.mulesoft.org/schema/mule/jersey"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd
+	xmlns:spring-security="http://www.mulesoft.org/schema/mule/spring-security"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/spring-security http://www.mulesoft.org/schema/mule/spring-security/current/mule-spring-security.xsd
+http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/jersey http://www.mulesoft.org/schema/mule/jersey/current/mule-jersey.xsd">
+http://www.mulesoft.org/schema/mule/jersey http://www.mulesoft.org/schema/mule/jersey/current/mule-jersey.xsd
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd">
 
- 	<spring:beans>
-        <security:authentication-manager alias="basicAuthManager">
-            <security:authentication-provider> 
-                <security:user-service id="authService"> 
-                    <security:user name="${notifications-rest-endpoint.auth.username}" password="${notifications-rest-endpoint.auth.password}" locked="true" authorities="ROLE_CLIENT"/>
-                </security:user-service> 
-            </security:authentication-provider> 
-        </security:authentication-manager>
-    </spring:beans>
+	<spring:beans>
+		<security:authentication-manager alias="basicAuthManager">
+			<security:authentication-provider>
+				<security:user-service id="authService">
+					<security:user name="${notifications-rest-endpoint.auth.username}"
+						password="${notifications-rest-endpoint.auth.password}"
+						authorities="ROLE_CLIENT" />
+				</security:user-service>
+			</security:authentication-provider>
+		</security:authentication-manager>
+	</spring:beans>
 
- 	<spring-security:security-manager>
-        <spring-security:delegate-security-provider name="memory-provider" delegate-ref="basicAuthManager"/>
-    </spring-security:security-manager>
-    
-    <http:listener-config name="HTTP_Listener_Configuration" host="${notifications-rest-endpoint.host}" port="${notifications-rest-endpoint.port}" doc:name="HTTP Listener Configuration"/>
+	<spring-security:security-manager>
+		<spring-security:delegate-security-provider
+			name="memory-provider" delegate-ref="basicAuthManager" />
+	</spring-security:security-manager>
 
-    <flow name="notifications-rest-endpoint-flow">
-        <http:listener config-ref="HTTP_Listener_Configuration" path="${notifications-rest-endpoint.path}" doc:name="HTTP"/>
-      
-        <spring-security:http-security-filter realm="TruckCenterService Authentication" securityProviders="memory-provider"/>
-      	  
-        <json:json-to-object-transformer returnClass="com.ingesup.truckcenter.PositionNotification" />
-       
-       	<logger message="Queuing PositionNotification : #[payload]" level="INFO" doc:name="Logger"/>
-       	
-       	<jms:outbound-endpoint connector-ref="activeMQConnector" queue="${drivers-positions.queue}" doc:name="JMS"/>
-    </flow>
-    
+	<http:listener-config name="HTTP_Listener_Configuration" 
+		host="${notifications-rest-endpoint.host}" port="${notifications-rest-endpoint.port}"
+		doc:name="HTTP Listener Configuration" />
+
+	<flow name="notifications-rest-endpoint-flow">
+		<http:listener config-ref="HTTP_Listener_Configuration" allowedMethods="POST" 
+			path="${notifications-rest-endpoint.path}" doc:name="HTTP" />
+		
+		
+
+		<spring-security:http-security-filter
+			realm="TruckCenterService Authentication" securityProviders="memory-provider" />
+
+		<json:json-to-object-transformer
+			returnClass="com.ingesup.truckcenter.domain.PositionNotification" doc:name="JSON to Object" mimeType="application/json"/>
+        <mulexml:object-to-xml-transformer doc:name="Object to XML"/>
+
+		<logger message="Queuing PositionNotification : #[payload]"
+			level="INFO" doc:name="Logger" />
+
+		<jms:outbound-endpoint connector-ref="activeMQConnector"
+			queue="${drivers-positions.queue}" doc:name="JMS" />
+	</flow>
+
 </mule>

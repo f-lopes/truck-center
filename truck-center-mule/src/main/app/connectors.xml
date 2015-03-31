@@ -10,8 +10,6 @@ http://www.mulesoft.org/schema/mule/esper http://www.mulesoft.org/schema/mule/es
 
     <jms:activemq-connector name="activeMQConnector" brokerURL="${activemq.broker.url}" username="${activemq.broker.username}" password="${activemq.broker.password}" doc:name="Active MQ"/>
     
-    <esper:config name="esperConnector" configuration="esper-configuration.xml" doc:name="Esper">
-    	
-    </esper:config>
+    <esper:config name="esperConfig" configuration="esper-configuration.xml" doc:name="Esper" />
     
 </mule>

@@ -11,6 +11,8 @@
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		
+		<activemq.version>5.7.0</activemq.version>
 
 		<mule.version>3.6.0</mule.version>
     	<mule.tools.version>1.0</mule.tools.version>
@@ -121,6 +123,15 @@
 
 	<!-- Mule Dependencies -->
 	<dependencies>
+	
+		<!-- ActiveMQ -->
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-core</artifactId>
+			<version>${activemq.version}</version>
+		</dependency>
+		
+	
 		<!-- Xml configuration -->
 		<dependency>
         	<groupId>com.mulesoft.muleesb</groupId>
