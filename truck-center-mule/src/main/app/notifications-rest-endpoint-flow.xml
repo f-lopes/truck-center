@@ -45,8 +45,6 @@ http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/
 		<http:listener config-ref="HTTP_Listener_Configuration" allowedMethods="POST" 
 			path="${notifications-rest-endpoint.path}" doc:name="HTTP" />
 		
-		
-
 		<spring-security:http-security-filter
 			realm="TruckCenterService Authentication" securityProviders="memory-provider" />
 
