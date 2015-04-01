@@ -6,6 +6,9 @@ package com.ingesup.truck.activiti;
  */
 public class ActivitiConstants {
 
+	private ActivitiConstants() {
+	}
+
 	public static final String ALERT_ID = "ALERT_ID";
 	public static final String DRIVER_ID = "DRIVER_ID";
 }

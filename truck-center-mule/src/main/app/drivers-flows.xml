@@ -38,7 +38,7 @@ http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/
 			message="Listening for Esper events PositionNotificationEvent : #[payload]"
 			level="INFO" doc:name="Logger" />
 
-	<!-- 	<esper:listen statement="${esper.stopped-driver.query}"
+		<!-- <esper:listen statement="${esper.stopped-driver.query}"
 			config-ref="esperConfig" doc:name="Esper (Streaming)" /> -->
 
 		<logger message="Found matching events for query ... : #[payload]"

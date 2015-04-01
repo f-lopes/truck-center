@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:json="http://www.mulesoft.org/schema/mule/json"
+<mule xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:json="http://www.mulesoft.org/schema/mule/json"
 	xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:jersey="http://www.mulesoft.org/schema/mule/jersey"
 	xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
 	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
@@ -17,7 +17,6 @@ http://www.mulesoft.org/schema/mule/spring-security http://www.mulesoft.org/sche
 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/jersey http://www.mulesoft.org/schema/mule/jersey/current/mule-jersey.xsd
-http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd">
 
 	<spring:beans>
@@ -42,6 +41,7 @@ http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/
 		doc:name="HTTP Listener Configuration" />
 
 	<flow name="notifications-rest-endpoint-flow">
+	
 		<http:listener config-ref="HTTP_Listener_Configuration" allowedMethods="POST" 
 			path="${notifications-rest-endpoint.path}" doc:name="HTTP" />
 		

@@ -54,9 +54,9 @@ public class DatabaseLoader {
 
 	private void initAdmin() {
 		User adminUser = new User(truckCenterProperties.getAdminFirstname(),
-								  truckCenterProperties.getLastname(),
-								  truckCenterProperties.getEmail(),
-								  truckCenterProperties.getPassword());
+								  truckCenterProperties.getAdminLastname(),
+								  truckCenterProperties.getAdminEmail(),
+								  truckCenterProperties.getAdminPassword());
 		adminUser.addRole(RoleEnum.ROLE_ADMIN);
 
 		userService.add(adminUser);
