@@ -18,6 +18,14 @@ public class Alert extends BaseEntity {
 	@ManyToOne
 	private Driver driver;
 
+	public Alert() {
+	}
+
+	public Alert(Date date, Driver driver) {
+		this.date = date;
+		this.driver = driver;
+	}
+
 	public Driver getDriver() {
 		return driver;
 	}

@@ -13,6 +13,20 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd">
 
+	<spring:beans>
+		<spring:bean name="positionNotificationEventSubscriber" class="com.ingesup.truckcenter.esper.subscriber.PositionNotificationEventSubscriber">
+			<spring:constructor-arg name="eplStatementQuery" value="${esper.stopped-driver.query}" />
+			<spring:constructor-arg name="truckCenterRestService" ref="truckCenterRestService" />
+		</spring:bean>
+
+		<spring:bean name="truckCenterRestService" class="com.ingesup.truckcenter.service.TruckCenterRestService">
+			<spring:constructor-arg index="1" ref="${alerts-rest-api.url}" />
+			<spring:constructor-arg index="2" ref="${alerts-rest-api.username}" />
+			<spring:constructor-arg index="3" ref="${alerts-rest-api.password}" />
+		</spring:bean>
+
+	</spring:beans>
+
 	<http:request-config name="HTTP_Request_alerts-REST-API"
 		host="${alerts-rest-api.host}" port="${alerts-rest-api.port}"
 		doc:name="HTTP Request Configuration for Alerts REST API" />

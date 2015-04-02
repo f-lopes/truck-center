@@ -1,6 +1,7 @@
 package com.ingesup.truck.controller.rest;
 
 import com.ingesup.truck.activiti.ActivitiConstants;
+import com.ingesup.truck.dto.AlertDTO;
 import com.ingesup.truck.service.AlertService;
 import com.ingesup.truck.service.DriverService;
 import com.ingesup.truck_center.model.Alert;
@@ -39,8 +40,8 @@ public class AlertsRestController {
 	}
 
 	@RequestMapping(value = "/alerts", method = RequestMethod.POST)
-	public ResponseEntity<String> createAlert(@RequestBody Alert alert) {
-		alert.setDriver(driverService.get(alert.getDriver().getId()));
+	public ResponseEntity<String> createAlert(@RequestBody AlertDTO alertDTO) {
+		final Alert alert = new Alert(alertDTO.getDate(), driverService.get(alertDTO.getDriverId()));
 		Alert createdAlert = alertService.add(alert);
 
 		Map<String, Object> processVariables = new HashMap<>();

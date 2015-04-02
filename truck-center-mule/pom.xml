@@ -17,6 +17,7 @@
 
 		<mule.version>3.6.0</mule.version>
     	<mule.tools.version>1.0</mule.tools.version>
+		<httpclient.version>4.4</httpclient.version>
 	</properties>
 
 	<build>
@@ -124,6 +125,7 @@
 
 	<!-- Mule Dependencies -->
 	<dependencies>
+
 		<!-- ActiveMQ -->
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
@@ -135,6 +137,12 @@
 			<groupId>com.espertech</groupId>
 			<artifactId>esper</artifactId>
 			<version>${esper-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
 		</dependency>
 
 		<!-- Xml configuration -->
