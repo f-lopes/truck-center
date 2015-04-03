@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "SentMessage")
-public class SentMessage extends BaseEntity {
+public class Sentmessage extends BaseEntity {
 
     @ManyToOne
 //    @JoinColumn(name="driver_id", nullable=false, updatable=false)
