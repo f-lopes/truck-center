@@ -20,9 +20,9 @@ http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/
 		</spring:bean>
 
 		<spring:bean name="truckCenterRestService" class="com.ingesup.truckcenter.service.impl.TruckCenterRestServiceImpl">
-			<spring:constructor-arg index="1" ref="${alerts-rest-api.url}" />
-			<spring:constructor-arg index="2" ref="${alerts-rest-api.username}" />
-			<spring:constructor-arg index="3" ref="${alerts-rest-api.password}" />
+			<spring:constructor-arg index="0" value="${alerts-rest-api.url}" />
+			<spring:constructor-arg index="1" value="${alerts-rest-api.username}" />
+			<spring:constructor-arg index="2" value="${alerts-rest-api.password}" />
 		</spring:bean>
 
 	</spring:beans>

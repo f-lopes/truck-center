@@ -11,11 +11,14 @@ import org.springframework.format.support.FormattingConversionService;
 import org.springframework.security.web.bind.support.AuthenticationPrincipalArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import java.util.List;
 
@@ -26,6 +29,19 @@ import java.util.List;
 @Configuration
 @ComponentScan (basePackages = "com.ingesup.truck.controller")
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
+
+	private static final String VIEW_PREFIX = "classpath:/templates/";
+	private static final String VIEW_SUFFIX = ".jsp";
+
+	@Bean
+	public ViewResolver viewResolver() {
+		UrlBasedViewResolver jstlViewResolver = new UrlBasedViewResolver();
+		jstlViewResolver.setViewClass(JstlView.class);
+		jstlViewResolver.setPrefix(VIEW_PREFIX);
+		jstlViewResolver.setSuffix(VIEW_SUFFIX);
+
+		return jstlViewResolver;
+	}
 
 	@Bean
 	public LocaleResolver localeResolver() {

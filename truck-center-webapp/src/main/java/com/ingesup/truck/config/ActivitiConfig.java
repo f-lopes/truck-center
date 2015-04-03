@@ -36,7 +36,7 @@ public class ActivitiConfig {
 		SpringProcessEngineConfiguration processEngineConfiguration = new SpringProcessEngineConfiguration();
 		processEngineConfiguration.setDataSource(this.dataSource);
 		processEngineConfiguration.setDeploymentResources(getDeploymentResources());
-		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_CREATE_DROP);
 
 		return processEngineConfiguration;
 	}
