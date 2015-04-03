@@ -1,6 +1,8 @@
 package com.ingesup.truck.service.impl;
 
+import com.ingesup.truck.repository.BaseRepository;
 import com.ingesup.truck.repository.UserRepository;
+import com.ingesup.truck.service.UserService;
 import com.ingesup.truck_center.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.mapping.Attributes2GrantedAuthoritiesMapper;
@@ -17,7 +19,7 @@ import java.util.Set;
  * <florian.lopes@outlook.com>
  */
 @Service
-public class UserServiceImpl implements UserDetailsService {
+public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements UserService, UserDetailsService {
 
 	private final UserRepository userRepository;
 
@@ -40,5 +42,10 @@ public class UserServiceImpl implements UserDetailsService {
 		return new org.springframework.security.core.userdetails.User(
 				truckCenterUser.getEmail(), truckCenterUser.getPassword(),
 				this.grantedAuthoritiesMapper.getGrantedAuthorities(userRoles));
+	}
+
+	@Override
+	public BaseRepository getRepository() {
+		return this.userRepository;
 	}
 }
