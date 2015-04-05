@@ -22,7 +22,7 @@ public class TruckServiceImpl extends BaseServiceImpl<Truck, Integer> implements
 	}
 
 	@Override
-	public BaseRepository getRepository() {
+	public BaseRepository<Truck, Integer> getRepository() {
 		return this.truckRepository;
 	}
 }

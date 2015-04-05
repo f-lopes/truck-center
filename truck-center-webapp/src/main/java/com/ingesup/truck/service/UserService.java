@@ -7,4 +7,6 @@ import com.ingesup.truck_center.model.User;
  * <florian.lopes@outlook.com>
  */
 public interface UserService extends BaseService<User, Integer> {
+
+	User getByEmail(String email);
 }

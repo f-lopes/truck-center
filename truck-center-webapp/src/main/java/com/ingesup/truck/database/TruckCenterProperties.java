@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = TruckCenterProperties.PREFIX)
 public class TruckCenterProperties {
 
-	public static final String PREFIX = "truck-center.database";
+	public static final String PREFIX = "truck-center";
 	public static final char SEPARATOR = ',';
 
 	private boolean initialize = false;

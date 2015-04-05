@@ -77,20 +77,19 @@
 			<artifactId>activiti-spring</artifactId>
 			<version>${activiti.version}</version>
 		</dependency>
-
+ 
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-spring-boot</artifactId>
 			<version>5.16.3</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-engine</artifactId>
 			<version>${activiti.version}</version>
 		</dependency>
-
+ 
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>spring-boot-starter-basic</artifactId>
@@ -106,13 +105,13 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-			<scope>provided</scope>
+			<!--<scope>provided</scope>-->
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>provided</scope>
+			<!--<scope>provided</scope>-->
 		</dependency>
 
 		<dependency>
@@ -137,7 +136,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
+			<!--<scope>provided</scope>-->
 		</dependency>
 
 		<dependency>

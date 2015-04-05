@@ -3,6 +3,7 @@ package com.ingesup.truck.security;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * Created by lopes_f on 1/15/2015.
@@ -16,7 +17,7 @@ public class SecurityUtil {
 		return authentication == null ? null : (TruckCenterUserDetails) authentication.getPrincipal();
 	}
 
-	public static void loginUser(TruckCenterUserDetails user) {
+	public static void loginUser(UserDetails user) {
 		Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);

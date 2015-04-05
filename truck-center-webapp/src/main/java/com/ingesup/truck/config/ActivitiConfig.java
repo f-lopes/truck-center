@@ -1,5 +1,8 @@
 package com.ingesup.truck.config;
 
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -13,14 +16,12 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
 /**
  * Created by lopes_f on 3/24/2015.
  * <florian.lopes@outlook.com>
  */
 @Configuration
+@Profile("!test")
 public class ActivitiConfig {
 
 	@Autowired
@@ -55,20 +56,17 @@ public class ActivitiConfig {
 		return processEngineConfiguration;
 	}
 
-/*	@Bean
+	@Bean
 	@Profile("test")
 	public SpringProcessEngineConfiguration processEngineConfigurationTest() {
 		SpringProcessEngineConfiguration processEngineConfiguration = new SpringProcessEngineConfiguration();
-		processEngineConfiguration.setDataSource(this.dataSource);
-		processEngineConfiguration.setDatabaseType("h2");
 		processEngineConfiguration.setDeploymentResources(getDeploymentResources());
-		processEngineConfiguration.setDatabaseSchema("truck-center");
 		processEngineConfiguration.setJpaEntityManagerFactory(this.entityManagerFactory);
 		processEngineConfiguration.setTransactionManager(dataSourceTransactionManager());
 		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
 
 		return processEngineConfiguration;
-	}*/
+	}
 
 	@Bean
 	public RuntimeService runtimeService(SpringProcessEngineConfiguration processEngineConfiguration) {

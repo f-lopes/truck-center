@@ -32,7 +32,7 @@ public class DriverServiceImpl extends BaseServiceImpl<Driver, Integer> implemen
 	}
 
 	@Override
-	public BaseRepository getRepository() {
+	public BaseRepository<Driver, Integer> getRepository() {
 		return this.driverRepository;
 	}
 

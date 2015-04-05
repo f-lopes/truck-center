@@ -27,7 +27,7 @@ public class AlertServiceImpl extends BaseServiceImpl<Alert, Integer> implements
 	}
 
 	@Override
-	public BaseRepository getRepository() {
+	public BaseRepository<Alert, Integer> getRepository() {
 		return this.alertRepository;
 	}
 

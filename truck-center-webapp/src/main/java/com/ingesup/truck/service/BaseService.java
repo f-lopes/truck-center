@@ -3,13 +3,14 @@ package com.ingesup.truck.service;
 
 import com.ingesup.truck.repository.BaseRepository;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lopes_f on 1/8/2015.
  * <florian.lopes@outlook.com>
  */
-public interface BaseService<T, I> {
+public interface BaseService<T, I extends Serializable> {
 
 	public List<T> getAll();
 
@@ -27,5 +28,5 @@ public interface BaseService<T, I> {
 
 	public long count(T entity);
 
-	public BaseRepository getRepository();
+	public BaseRepository<T, I> getRepository();
 }

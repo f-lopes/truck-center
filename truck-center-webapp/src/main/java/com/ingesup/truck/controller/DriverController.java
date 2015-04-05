@@ -26,7 +26,7 @@ import javax.validation.Valid;
 @RequestMapping("/drivers")
 public class DriverController {
 
-	private static final String ADD_DRIVER_VIEW = "driver/newDriver";
+	private static final String ADD_DRIVER_VIEW = "driver/add";
 	private static final String ADD_DRIVER_URL = "/drivers/add";
 	private static final String ALL_DRIVERS_URL = "/drivers";
 

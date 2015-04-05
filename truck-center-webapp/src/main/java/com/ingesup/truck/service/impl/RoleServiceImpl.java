@@ -22,7 +22,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements R
 	}
 
 	@Override
-	public BaseRepository getRepository() {
+	public BaseRepository<Role, Integer> getRepository() {
 		return this.roleRepository;
 	}
 }
