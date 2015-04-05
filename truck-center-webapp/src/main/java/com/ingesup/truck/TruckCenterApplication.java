@@ -14,10 +14,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * <florian.lopes@outlook.com>
  */
 @Configuration
-@ComponentScan (basePackages = "com.ingesup.truck")
+@ComponentScan(basePackages = "com.ingesup.truck")
 @EnableAutoConfiguration
 @EntityScan("com.ingesup.truck_center.model")
-@EnableJpaRepositories (basePackages = "com.ingesup.truck.repository")
+@EnableJpaRepositories(basePackages = "com.ingesup.truck.repository")
 @Import(ActivitiConfig.class)
 public class TruckCenterApplication {
 

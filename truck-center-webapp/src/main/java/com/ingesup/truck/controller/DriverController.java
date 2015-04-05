@@ -2,6 +2,7 @@ package com.ingesup.truck.controller;
 
 import com.ingesup.truck.form.AddDriverForm;
 import com.ingesup.truck.service.DriverService;
+import com.ingesup.truck.service.TruckService;
 import com.ingesup.truck.util.MessageUtil;
 import com.ingesup.truck_center.model.Driver;
 import com.ingesup.truck_center.model.RoleEnum;
@@ -30,17 +31,20 @@ public class DriverController {
 	private static final String ALL_DRIVERS_URL = "/drivers";
 
 	private final DriverService driverService;
+	private final TruckService truckService;
 	private final MessageSource messageSource;
 
 	@Autowired
-	public DriverController(DriverService driverService, MessageSource messageSource) {
+	public DriverController(DriverService driverService, TruckService truckService, MessageSource messageSource) {
 		this.driverService = driverService;
+		this.truckService = truckService;
 		this.messageSource = messageSource;
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addDriverForm(Model model) {
 		model.addAttribute("addDriverForm", new AddDriverForm());
+		model.addAttribute("trucks", this.truckService.getAll());
 
 		return ADD_DRIVER_VIEW;
 	}
@@ -51,7 +55,7 @@ public class DriverController {
 			return "redirect:" + ADD_DRIVER_URL;
 		}
 
-		final Driver newDriver = addDriverForm.getDriver();
+		final Driver newDriver = addDriverForm.getDriverFromForm();
 		newDriver.addRole(RoleEnum.ROLE_DRIVER);
 		this.driverService.add(newDriver);
 

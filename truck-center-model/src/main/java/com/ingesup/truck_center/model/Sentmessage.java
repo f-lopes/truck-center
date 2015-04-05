@@ -17,7 +17,10 @@ public class Sentmessage extends BaseEntity {
 //    @JoinColumn(name="driver_message_id", nullable=false, updatable=false)
     private DriverMessage driverMessage;
 
-    public SentMessage(Driver driver, DriverMessage driverMessage) {
+    public Sentmessage() {
+    }
+
+    public Sentmessage(Driver driver, DriverMessage driverMessage) {
         this.driver = driver;
         this.driverMessage = driverMessage;
     }

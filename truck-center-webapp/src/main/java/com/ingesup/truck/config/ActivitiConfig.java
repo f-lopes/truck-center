@@ -8,9 +8,12 @@ import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 /**
@@ -23,6 +26,9 @@ public class ActivitiConfig {
 	@Autowired
 	private DataSource dataSource;
 
+	@Autowired
+	private EntityManagerFactory entityManagerFactory;
+
 	@Bean
 	public ProcessEngineFactoryBean processEngineFactoryBean() {
 		ProcessEngineFactoryBean processEngineFactoryBean = new ProcessEngineFactoryBean();
@@ -31,15 +37,38 @@ public class ActivitiConfig {
 		return processEngineFactoryBean;
 	}
 
+	public DataSourceTransactionManager dataSourceTransactionManager() {
+		return new DataSourceTransactionManager(this.dataSource);
+	}
+
 	@Bean
 	public SpringProcessEngineConfiguration processEngineConfiguration() {
 		SpringProcessEngineConfiguration processEngineConfiguration = new SpringProcessEngineConfiguration();
 		processEngineConfiguration.setDataSource(this.dataSource);
+		processEngineConfiguration.setDatabaseType("mysql");
 		processEngineConfiguration.setDeploymentResources(getDeploymentResources());
-		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_CREATE_DROP);
+		processEngineConfiguration.setDatabaseSchema("truck-center");
+		processEngineConfiguration.setJpaEntityManagerFactory(this.entityManagerFactory);
+		processEngineConfiguration.setTransactionManager(dataSourceTransactionManager());
+		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
 
 		return processEngineConfiguration;
 	}
+
+/*	@Bean
+	@Profile("test")
+	public SpringProcessEngineConfiguration processEngineConfigurationTest() {
+		SpringProcessEngineConfiguration processEngineConfiguration = new SpringProcessEngineConfiguration();
+		processEngineConfiguration.setDataSource(this.dataSource);
+		processEngineConfiguration.setDatabaseType("h2");
+		processEngineConfiguration.setDeploymentResources(getDeploymentResources());
+		processEngineConfiguration.setDatabaseSchema("truck-center");
+		processEngineConfiguration.setJpaEntityManagerFactory(this.entityManagerFactory);
+		processEngineConfiguration.setTransactionManager(dataSourceTransactionManager());
+		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+
+		return processEngineConfiguration;
+	}*/
 
 	@Bean
 	public RuntimeService runtimeService(SpringProcessEngineConfiguration processEngineConfiguration) {
@@ -52,6 +81,6 @@ public class ActivitiConfig {
 	}
 
 	private Resource[] getDeploymentResources() {
-		return new ClassPathResource[] {new ClassPathResource("truck-center-driver-stuck-flow.bpmn20.xml")};
+		return new ClassPathResource[] {new ClassPathResource("")};
 	}
 }

@@ -25,8 +25,8 @@ import javax.validation.Valid;
 @RequestMapping("/trucks")
 public class TruckController {
 
-	private static final String ALL_TRUCKS_VIEW = "truck/allTrucks";
-	private static final String ADD_TRUCK_VIEW = "truck/newTruck";
+	private static final String ALL_TRUCKS_VIEW = "truck/list";
+	private static final String ADD_TRUCK_VIEW = "truck/add";
 	private static final String ADD_TRUCK_URL = "/trucks/add";
 	private static final String ALL_TRUCKS_URL = "/trucks";
 

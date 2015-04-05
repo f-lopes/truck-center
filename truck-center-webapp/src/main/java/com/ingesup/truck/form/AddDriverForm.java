@@ -1,6 +1,7 @@
 package com.ingesup.truck.form;
 
 import com.ingesup.truck_center.model.Driver;
+import com.ingesup.truck_center.model.Truck;
 
 /**
  * Created by lopes_f on 3/30/2015.
@@ -15,6 +16,8 @@ public class AddDriverForm {
 	private String email;
 
 	private String password;
+
+	private Truck truck;
 
 	public String getFirstName() {
 		return firstName;
@@ -48,7 +51,18 @@ public class AddDriverForm {
 		this.password = password;
 	}
 
-	public Driver getDriver() {
-		return new Driver(firstName, lastName, email, password);
+	public Truck getTruck() {
+		return truck;
+	}
+
+	public void setTruck(Truck truck) {
+		this.truck = truck;
+	}
+
+	public Driver getDriverFromForm() {
+		final Driver driver = new Driver(firstName, lastName, email, password);
+		driver.setTruck(truck);
+
+		return driver;
 	}
 }
