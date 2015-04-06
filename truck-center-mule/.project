@@ -12,8 +12,12 @@
     <buildCommand>
       <name>org.mule.tooling.maven.mavenBuilder</name>
     </buildCommand>
+    <buildCommand>
+      <name>org.eclipse.m2e.core.maven2Builder</name>
+    </buildCommand>
   </buildSpec>
   <natures>
+    <nature>org.eclipse.m2e.core.maven2Nature</nature>
     <nature>org.mule.tooling.maven.mavenNature</nature>
     <nature>org.eclipse.jdt.core.javanature</nature>
     <nature>org.mule.tooling.core.muleNature</nature>

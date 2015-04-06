@@ -22,7 +22,7 @@
     <p><a href="<c:url value="/trucks/create"/>" class="btn btn-success"><spring:message code="truck.create"/></a></p>
 
     <c:choose>
-        <c:when test="${fn:length(truckList) gt 0}">
+        <c:when test="${fn:length(trucks) gt 0}">
 
             <table class="table table-striped">
                 <thead>
@@ -31,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${truckList}" var="truck">
+                <c:forEach items="${trucks}" var="truck">
                     <tr>
                         <td><a href="<c:url value='/truck/${truck.identificationNumber}'/>">${truck.identificationNumber}</a></td>
                     </tr>

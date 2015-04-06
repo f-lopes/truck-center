@@ -1,18 +1,18 @@
 package com.ingesup.truckcenter.service.impl;
 
-import com.ingesup.truckcenter.domain.AlertDTO;
-import com.ingesup.truckcenter.exception.TruckCenterRestException;
-import com.ingesup.truckcenter.service.TruckCenterRestService;
+import java.io.IOException;
+
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.springframework.security.crypto.codec.Base64;
 
-import java.io.IOException;
+import com.ingesup.truckcenter.domain.AlertDTO;
+import com.ingesup.truckcenter.exception.TruckCenterRestException;
+import com.ingesup.truckcenter.service.TruckCenterRestService;
 
 /**
  * Created by lopes_f on 4/2/2015.
@@ -64,7 +64,7 @@ public class TruckCenterRestServiceImpl implements TruckCenterRestService {
 
 	private HttpClient getHttpClient() {
 		if (this.httpClient == null) {
-			this.httpClient = HttpClientBuilder.create().build();
+			this.httpClient = new DefaultHttpClient();
 		}
 
 		return this.httpClient;
