@@ -10,7 +10,7 @@ public class AddTruckForm {
 
 	private String identificationNumber;
 
-	private int driverId;
+	private String driverId;
 
 	public String getIdentificationNumber() {
 		return identificationNumber;
@@ -20,11 +20,11 @@ public class AddTruckForm {
 		this.identificationNumber = identificationNumber;
 	}
 
-	public int getDriverId() {
+	public String getDriverId() {
 		return driverId;
 	}
 
-	public void setDriverId(int driverId) {
+	public void setDriverId(String driverId) {
 		this.driverId = driverId;
 	}
 

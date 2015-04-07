@@ -23,7 +23,7 @@ import java.util.Set;
  * <florian.lopes@outlook.com>
  */
 @Service
-public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements UserService, UserDetailsService {
+public class UserServiceImpl extends BaseServiceImpl<User, String> implements UserService, UserDetailsService {
 
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
@@ -76,7 +76,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements U
 	}
 
 	@Override
-	public BaseRepository<User, Integer> getRepository() {
+	public BaseRepository<User, String> getRepository() {
 		return this.userRepository;
 	}
 }
