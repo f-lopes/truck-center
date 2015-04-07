@@ -79,6 +79,6 @@ public class ActivitiConfig {
 	}
 
 	private Resource[] getDeploymentResources() {
-		return new ClassPathResource[] {new ClassPathResource("")};
+		return new ClassPathResource[] {new ClassPathResource("diagram/incident.bpmn")};
 	}
 }
