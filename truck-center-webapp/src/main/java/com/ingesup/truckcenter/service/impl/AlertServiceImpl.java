@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * <florian.lopes@outlook.com>
  */
 @Service
-public class AlertServiceImpl extends BaseServiceImpl<Alert, Integer> implements AlertService {
+public class AlertServiceImpl extends BaseServiceImpl<Alert, String> implements AlertService {
 
 	private final AlertRepository alertRepository;
 	private final DriverRepository driverRepository;
@@ -27,12 +27,12 @@ public class AlertServiceImpl extends BaseServiceImpl<Alert, Integer> implements
 	}
 
 	@Override
-	public BaseRepository<Alert, Integer> getRepository() {
+	public BaseRepository<Alert, String> getRepository() {
 		return this.alertRepository;
 	}
 
 	@Override
-	public Alert getFirstByDriverId(Integer driverId) throws DriverNotFoundException {
+	public Alert getFirstByDriverId(String driverId) throws DriverNotFoundException {
 		final Driver driver = driverRepository.findOne(driverId);
 		if (driver == null) {
 			throw new DriverNotFoundException(driverId);

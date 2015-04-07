@@ -8,6 +8,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
+import org.apache.http.util.EntityUtils;
 import org.springframework.security.crypto.codec.Base64;
 
 import com.ingesup.truckcenter.domain.AlertDTO;
@@ -37,8 +38,8 @@ public class TruckCenterRestServiceImpl implements TruckCenterRestService {
 		httpPost.addHeader("accept", "application/json");
 
 		addAuthentication(httpPost);
-
-		// TODO => https://hc.apache.org/httpcomponents-client-4.4.x/quickstart.html
+		
+		// TODO HttpEntity (JSON)
 
 		try {
 			final HttpResponse httpResponse = getHttpClient().execute(httpPost);

@@ -18,7 +18,7 @@ import java.util.Set;
  * <florian.lopes@outlook.com>
  */
 @Service
-public class DriverServiceImpl extends BaseServiceImpl<Driver, Integer> implements DriverService {
+public class DriverServiceImpl extends BaseServiceImpl<Driver, String> implements DriverService {
 
 	private final DriverRepository driverRepository;
 	private final PasswordEncoder passwordEncoder;
@@ -32,7 +32,7 @@ public class DriverServiceImpl extends BaseServiceImpl<Driver, Integer> implemen
 	}
 
 	@Override
-	public BaseRepository<Driver, Integer> getRepository() {
+	public BaseRepository<Driver, String> getRepository() {
 		return this.driverRepository;
 	}
 

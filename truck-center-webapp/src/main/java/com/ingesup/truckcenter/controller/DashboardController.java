@@ -53,7 +53,7 @@ public class DashboardController {
 	}
 
 	@RequestMapping(value = "/by-driver", method = RequestMethod.GET)
-	public String alertsByDriver(Model model, @RequestParam Integer driverId, RedirectAttributes redirectAttributes) {
+	public String alertsByDriver(Model model, @RequestParam String driverId, RedirectAttributes redirectAttributes) {
 		try {
 			model.addAttribute("alerts", alertService.getFirstByDriverId(driverId));
 		} catch (DriverNotFoundException e) {
@@ -67,7 +67,7 @@ public class DashboardController {
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String viewAlert(Model model, @RequestParam Integer alertId, RedirectAttributes redirectAttributes) {
+	public String viewAlert(Model model, @RequestParam String alertId, RedirectAttributes redirectAttributes) {
 		final Alert alert = alertService.get(alertId);
 		if (alert == null) {
 			redirectAttributes.addFlashAttribute(MessageUtil.returnWarning(

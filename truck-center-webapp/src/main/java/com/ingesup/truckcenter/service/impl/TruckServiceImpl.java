@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * <florian.lopes@outlook.com>
  */
 @Service
-public class TruckServiceImpl extends BaseServiceImpl<Truck, Integer> implements TruckService {
+public class TruckServiceImpl extends BaseServiceImpl<Truck, String> implements TruckService {
 
 	private final TruckRepository truckRepository;
 
@@ -22,7 +22,7 @@ public class TruckServiceImpl extends BaseServiceImpl<Truck, Integer> implements
 	}
 
 	@Override
-	public BaseRepository<Truck, Integer> getRepository() {
+	public BaseRepository<Truck, String> getRepository() {
 		return this.truckRepository;
 	}
 }

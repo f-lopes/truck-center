@@ -10,7 +10,7 @@
     <sequenceFlow id="_9" name="RAS" sourceRef="_driver_call_result" targetRef="_RAS_end"></sequenceFlow>
     <parallelGateway id="_parallel_problem_tasks" name="ParallelGateway"></parallelGateway>
     <sequenceFlow id="_13" sourceRef="_driver_call_result" targetRef="_parallel_problem_tasks"></sequenceFlow>
-    <serviceTask id="_customer_email" name="Email customer"></serviceTask>
+    <serviceTask id="_customer_email" name="Email customer" activiti:class="com.ingesup.truckcenter.activiti.TruckCenterEmailServiceTask"></serviceTask>
     <userTask id="_support_call" name="Call emergency support"></userTask>
     <sequenceFlow id="_16" sourceRef="_parallel_problem_tasks" targetRef="_customer_email"></sequenceFlow>
     <sequenceFlow id="_17" sourceRef="_parallel_problem_tasks" targetRef="_support_call"></sequenceFlow>

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * <florian.lopes@outlook.com>
  */
 @Service
-public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements RoleService {
+public class RoleServiceImpl extends BaseServiceImpl<Role, String> implements RoleService {
 
 	private final RoleRepository roleRepository;
 
@@ -22,7 +22,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements R
 	}
 
 	@Override
-	public BaseRepository<Role, Integer> getRepository() {
+	public BaseRepository<Role, String> getRepository() {
 		return this.roleRepository;
 	}
 }

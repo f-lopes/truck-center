@@ -17,22 +17,9 @@
             <%@include file="../menu/menuByRole.jsp"%>
         </sec:authorize>
 
-        <h1><spring:message code="users.list" /> </h1>
+        <h1><spring:message code="drivers.list" /> </h1>
 
 
-        <div class="row">
-            <div class="col-md-8">
-                <input ng-model="usernameQuery" type="text" placeholder="<spring:message code="users.filter"/>" class="form-control"/>
-                <input type="hidden"id="usersURL" value="<c:url value='/users/json?showAdminUsers=' />"/>
-            </div>
-            <div class="col-md-2">
-                <toggle-switch ng-click="showAdmin()" ng-model="switchStatus" knob-label="Admins/teachers" style="height: 25px"/>
-            </div>
-            <div class="col-md-2">
-                <p><a href="<c:url value="/users/add"/>" class="btn btn-success"><spring:message code="user.add.title"/></a></p>
-            </div>
-        </div>
-        
         <br />
 
         <table class="table">
@@ -47,22 +34,13 @@
             </thead>
 
             <tbody>
-            <tr ng-repeat="user in users | filter:usernameQuery">
+            <tr>
                 <td>
-                    <c:choose>
-                        <c:when test="${user.roles[0].name eq 'ROLE_STUDENT'}">
-                            <c:url var="studentBaseURL" value="/student/${user.id}"/>
-                            <a href="${studentBaseURL}">{{user.lastName}}</a>
-                        </c:when>
-                        <c:otherwise>
-                            {{user.lastName}}
-                        </c:otherwise>
-                    </c:choose>
+                            ${user.lastName}
                 </td>
-                <td>{{user.firstName}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.roles[0].name}}</td>
-                <td id="user-{{user.id}}"></td>
+                <td>${user.firstName}</td>
+                <td>${user.email}</td>
+                <td>${user.roles[0].name}</td>
             </tr>
             </tbody>
         </table>
