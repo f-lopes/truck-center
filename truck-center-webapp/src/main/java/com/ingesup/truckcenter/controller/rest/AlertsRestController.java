@@ -54,7 +54,7 @@ public class AlertsRestController {
 			processVariables.put(ActivitiConstants.DRIVER_ID, createdAlert.getDriver().getId());
 
 			ProcessInstance processInstance =
-					this.runtimeService.startProcessInstanceByKey(DRIVER_STOPPED_FLOW, processVariables);
+					this.runtimeService.startProcessInstanceByKey(DRIVER_STOPPED_FLOW, driver.getId(), processVariables);
 
 			return new ResponseEntity<>(processInstance.getId(), HttpStatus.CREATED);
 		}

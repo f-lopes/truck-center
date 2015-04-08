@@ -17,6 +17,10 @@ public class SecurityUtil {
 		return authentication == null ? null : (TruckCenterUserDetails) authentication.getPrincipal();
 	}
 
+	public static String getCurrentLoggedUsername() {
+		return getCurrentLoggedUser().getUsername();
+	}
+
 	public static void loginUser(UserDetails user) {
 		Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 

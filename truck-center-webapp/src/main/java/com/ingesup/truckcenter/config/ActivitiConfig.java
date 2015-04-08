@@ -21,7 +21,6 @@ import javax.sql.DataSource;
  * <florian.lopes@outlook.com>
  */
 @Configuration
-@Profile("!test")
 public class ActivitiConfig {
 
 	@Autowired
