@@ -12,8 +12,12 @@ import com.ingesup.truckcenter.service.TruckCenterRestService;
 import java.util.Date;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 public class PositionNotificationEventSubscriber {
 
+	private static final Logger logger = Logger.getLogger(PositionNotificationEventSubscriber.class);
+	
 	private final String eplStatementQuery;
 
 	private final TruckCenterRestService truckCenterRestService;
@@ -40,6 +44,8 @@ public class PositionNotificationEventSubscriber {
 	public void update(Map<String, Object> events) {
 		final PositionNotification positionNotification = ((PositionNotification) events.get("stream_0"));
 
+		logger.info("Found events for query " + events.size());
+		
 		final AlertDTO alertDTO = new AlertDTO(new Date(), positionNotification.getDriverId());
 
 		try {
