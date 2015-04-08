@@ -28,7 +28,7 @@ import java.util.Map;
 @RequestMapping(value = "/rest")
 public class AlertsRestController {
 
-	private static final String DRIVER_STOPPED_FLOW = "";
+	private static final String DRIVER_STOPPED_FLOW = "incident_process";
 
 	private final RuntimeService runtimeService;
 	private final AlertService alertService;
