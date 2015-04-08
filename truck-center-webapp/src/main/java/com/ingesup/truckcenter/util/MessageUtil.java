@@ -12,6 +12,9 @@ public class MessageUtil {
 
 	private static Message message;
 
+	private MessageUtil() {
+	}
+
 	public static Message returnSuccess(String code) {
 		return getMessage().setMessageType(MessageType.SUCCESS).setText(code);
 	}

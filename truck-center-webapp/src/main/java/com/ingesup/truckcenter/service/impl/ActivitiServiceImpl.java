@@ -25,6 +25,15 @@ public class ActivitiServiceImpl implements ActivitiService {
 	}
 
 	@Override
+	public Task getCurrentTaskByBusinessKey(String driverId) {
+		return this.taskService
+				.createTaskQuery()
+				.processInstanceBusinessKey(driverId)
+				.active()
+				.singleResult();
+	}
+
+	@Override
 	public Task getCurrentTaskByDriverId(String driverId) {
 		return this.taskService
 				.createTaskQuery()
@@ -40,5 +49,10 @@ public class ActivitiServiceImpl implements ActivitiService {
 				.active()
 				.processVariableValueEquals(ActivitiConstants.ALERT_ID, alertId)
 				.singleResult();
+	}
+
+	@Override
+	public void claimTask(String taskId, String userId) {
+		this.taskService.claim(taskId, userId);
 	}
 }

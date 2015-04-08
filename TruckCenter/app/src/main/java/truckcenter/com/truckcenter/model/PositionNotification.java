@@ -6,17 +6,17 @@ import java.util.Date;
  * Created by martin on 30/03/15.
  */
 public class PositionNotification {
-    private int truck_id;
+    private String driverId;
     private double latitude;
     private double longitude;
-    private Date date;
+    private long date;
 
-    public int getTruck_id() {
-        return truck_id;
+    public String getDriverId() {
+        return driverId;
     }
 
-    public void setTruck_id(int truck_id) {
-        this.truck_id = truck_id;
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
     }
 
     public double getLatitude() {
@@ -35,11 +35,11 @@ public class PositionNotification {
         this.longitude = longitude;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 }

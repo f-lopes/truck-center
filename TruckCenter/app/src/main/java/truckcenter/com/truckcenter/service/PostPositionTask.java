@@ -11,8 +11,10 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class PostPositionTask extends AsyncTask<PositionNotification, Void, Http
 
     @Override
     protected HttpResponse doInBackground(PositionNotification... params) {
-        String urlString = "http://truckcenter.martinleguillou.fr:8080/positionService";
+        String urlString = "http://truckcenter.martinleguillou.fr:8081/positionService";
         try
         {
             PositionNotification positionNotification = params[0];
@@ -44,15 +46,24 @@ public class PostPositionTask extends AsyncTask<PositionNotification, Void, Http
                     ("android-truck-app:a4&f24E0!").getBytes(),
                     Base64.NO_WRAP);
 
-
             post.setHeader("Authorization", base64EncodedCredentials);
 
-            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-            pairs.add(new BasicNameValuePair("truck_id", String.valueOf(positionNotification.getTruck_id())));
-            pairs.add(new BasicNameValuePair("latitude", String.valueOf(positionNotification.getLatitude())));
-            pairs.add(new BasicNameValuePair("longitude", String.valueOf(positionNotification.getLongitude())));
-            pairs.add(new BasicNameValuePair("date", String.valueOf(positionNotification.getDate())));
-            post.setEntity(new UrlEncodedFormEntity(pairs));
+            String json = "";
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.accumulate("driverId", positionNotification.getDriverId());
+            jsonObject.accumulate("latitude", String.valueOf(positionNotification.getLatitude()).replace(".", ""));
+            jsonObject.accumulate("longitude", String.valueOf(positionNotification.getLongitude()).replace(".", ""));
+            jsonObject.accumulate("date", String.valueOf(positionNotification.getDate()));
+
+            json = jsonObject.toString();
+
+            StringEntity se = new StringEntity(json);
+
+            post.setEntity(se);
+
+            post.setHeader("Content-type", "application/json");
+
             return client.execute(post);
         }
         catch (Exception ex){

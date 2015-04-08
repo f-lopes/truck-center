@@ -86,12 +86,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Override
-	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-		// Used to resolve @AuthenticationPrincipal annotation (@CurrentUser custom annotation)
-		argumentResolvers.add(new AuthenticationPrincipalArgumentResolver());
-	}
-
-	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatter(new DateFormatter("dd/MM/yyyy"));
 	}

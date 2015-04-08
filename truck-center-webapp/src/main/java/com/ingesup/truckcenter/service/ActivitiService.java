@@ -8,7 +8,11 @@ import org.activiti.engine.task.Task;
  */
 public interface ActivitiService {
 
+	Task getCurrentTaskByBusinessKey(String driverId);
+
 	Task getCurrentTaskByDriverId(String driverId);
 
 	Task getCurrentTaskByAlertId(String alertId);
+
+	void claimTask(String taskId, String userId);
 }

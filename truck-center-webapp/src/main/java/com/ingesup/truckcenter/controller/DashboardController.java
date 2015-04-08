@@ -2,6 +2,7 @@ package com.ingesup.truckcenter.controller;
 
 import com.ingesup.truckcenter.exception.DriverNotFoundException;
 import com.ingesup.truckcenter.model.Alert;
+import com.ingesup.truckcenter.security.SecurityUtil;
 import com.ingesup.truckcenter.service.ActivitiService;
 import com.ingesup.truckcenter.service.AlertService;
 import com.ingesup.truckcenter.util.MessageUtil;
@@ -68,13 +69,14 @@ public class DashboardController {
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String viewAlert(Model model, @RequestParam String alertId, RedirectAttributes redirectAttributes) {
+		// TODO list alerts with associated driver -> link driver click to active state for this driver
 		final Alert alert = alertService.get(alertId);
 		if (alert == null) {
 			redirectAttributes.addFlashAttribute(MessageUtil.returnWarning(
 					messageSource.getMessage("alert.not-found", null, LocaleContextHolder.getLocale())));
 			return "redirect:" + DASHBOARD_URL;
 		}
-		final Task activeTask = this.activitiService.getCurrentTaskByAlertId(String.valueOf(alertId));
+		final Task activeTask = this.activitiService.getCurrentTaskByAlertId(alertId);
 
 		model.addAttribute("activeTask", activeTask);
 		model.addAttribute("alert", alertService.get(alertId));
@@ -82,17 +84,18 @@ public class DashboardController {
 		return ALERT_VIEW;
 	}
 
-	@RequestMapping(value = "/incidents-by-driver", method = RequestMethod.GET)
-	public String incidentsByDriver(Model model, @RequestParam Integer driverId) {
-		final Task activeTask = this.activitiService.getCurrentTaskByDriverId(String.valueOf(driverId));
+	@RequestMapping(value = "/incident-status-by-driver", method = RequestMethod.GET)
+	public String incidentStatusByDriver(Model model, @RequestParam String driverId) {
+		final Task activeTask = this.activitiService.getCurrentTaskByBusinessKey(driverId);
 		model.addAttribute("activeTask", activeTask);
 
 		return INCIDENT_BY_DRIVER_VIEW;
 	}
 
 	@RequestMapping(value = "/complete-task", method = RequestMethod.POST)
-	public String completeTask(@RequestParam String taskId, @RequestParam Integer driverId, RedirectAttributes redirectAttributes) {
-		final Task task = this.activitiService.getCurrentTaskByDriverId(String.valueOf(driverId));
+	public String completeTask(@RequestParam String taskId, @RequestParam String driverId, RedirectAttributes redirectAttributes) {
+		this.activitiService.claimTask(taskId, SecurityUtil.getCurrentLoggedUsername());
+		final Task task = this.activitiService.getCurrentTaskByBusinessKey(driverId);
 
 		if (!taskId.equals(task.getId())) {
 			redirectAttributes.addFlashAttribute(MessageUtil.returnWarning(
@@ -105,7 +108,7 @@ public class DashboardController {
 		return "redirect:" + getIncidentsByDriverURL(driverId);
 	}
 
-	private String getIncidentsByDriverURL(Integer driverId) {
+	private String getIncidentsByDriverURL(String driverId) {
 		return MvcUriComponentsBuilder
 				.fromMethodName(this.getClass(), "incidentsByDriver", null, driverId)
 				.toUriString();
