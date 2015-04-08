@@ -44,15 +44,14 @@ public class PositionNotificationEventSubscriber {
 	public void update(Map<String, Object> events) {
 		final PositionNotification positionNotification = ((PositionNotification) events.get("stream_0"));
 
-		logger.info("Found events for query " + events.size());
+		logger.info(String.format("Found %d events for query - driverID : ", events.size(), positionNotification.getDriverId()));
 		
 		final AlertDTO alertDTO = new AlertDTO(new Date(), positionNotification.getDriverId());
 
 		try {
 			this.truckCenterRestService.addAlert(alertDTO);
 		} catch (TruckCenterRestException e) {
-			// TODO Handle exception
-			e.printStackTrace();
+			logger.error("Failed to POST alert to webapp", e);
 		}
 	}
 

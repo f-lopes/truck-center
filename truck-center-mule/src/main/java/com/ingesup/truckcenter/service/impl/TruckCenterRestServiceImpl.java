@@ -1,19 +1,19 @@
 package com.ingesup.truckcenter.service.impl;
 
-import java.io.IOException;
-
+import com.ingesup.truckcenter.domain.AlertDTO;
+import com.ingesup.truckcenter.exception.TruckCenterRestException;
+import com.ingesup.truckcenter.service.TruckCenterRestService;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
-import org.apache.http.util.EntityUtils;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.security.crypto.codec.Base64;
 
-import com.ingesup.truckcenter.domain.AlertDTO;
-import com.ingesup.truckcenter.exception.TruckCenterRestException;
-import com.ingesup.truckcenter.service.TruckCenterRestService;
+import java.io.IOException;
 
 /**
  * Created by lopes_f on 4/2/2015.
@@ -38,10 +38,12 @@ public class TruckCenterRestServiceImpl implements TruckCenterRestService {
 		httpPost.addHeader("accept", "application/json");
 
 		addAuthentication(httpPost);
-		
-		// TODO HttpEntity (JSON)
 
+		final ObjectMapper objectMapper = new ObjectMapper();
 		try {
+			final StringEntity stringEntity = new StringEntity(objectMapper.writeValueAsString(alert));
+			httpPost.setEntity(stringEntity);
+
 			final HttpResponse httpResponse = getHttpClient().execute(httpPost);
 			if (httpResponse.getStatusLine().getStatusCode() != 201) {
 				throw new TruckCenterRestException("Failed to POST to TruckCenter API");
