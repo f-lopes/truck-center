@@ -50,7 +50,7 @@
             <input type="hidden" name="taskId" value="${activeTask.id}"/>
             <input type="hidden" name="alertId" value="${alert.id}"/>
 
-
+            <!-- TODO Display comment in case of process finished ? -->
             <c:if test="${activeTask.name == 'Call driver'}">
                 Driver responded ?
                 <input name="driverResponded" type="radio" value="true" /> Yes
@@ -63,9 +63,7 @@
             <textarea id="comment" name="comment"></textarea>
 
             <br/><br/>
-            <span class="label label-success">
-                <input type="submit" value="Set this task as complete" />
-            </span>
+            <input type="submit" value="Set this task as complete" />
         </form>
     </c:if>
 

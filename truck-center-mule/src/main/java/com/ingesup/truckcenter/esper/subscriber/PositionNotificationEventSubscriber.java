@@ -44,7 +44,7 @@ public class PositionNotificationEventSubscriber {
 	public void update(Map<String, Object> events) {
 		final PositionNotification positionNotification = ((PositionNotification) events.get("stream_0"));
 
-		logger.info(String.format("Found %d events for query - driverID : ", events.size(), positionNotification.getDriverId()));
+		logger.info(String.format("Found %d events for query - driverID : %s ", events.size(), positionNotification.getDriverId()));
 		
 		final AlertDTO alertDTO = new AlertDTO(new Date(), positionNotification.getDriverId());
 
