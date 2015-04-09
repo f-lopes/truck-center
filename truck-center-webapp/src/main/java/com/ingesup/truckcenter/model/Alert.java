@@ -18,6 +18,8 @@ public class Alert extends BaseEntity {
 	@ManyToOne
 	private Driver driver;
 
+	private boolean resolved;
+
 	public Alert() {
 	}
 
@@ -40,5 +42,13 @@ public class Alert extends BaseEntity {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public boolean isResolved() {
+		return resolved;
+	}
+
+	public void setResolved(boolean resolved) {
+		this.resolved = resolved;
 	}
 }

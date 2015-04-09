@@ -24,8 +24,8 @@ import javax.validation.Valid;
  * <florian.lopes@outlook.com>
  */
 @Controller
-@RequestMapping("/drivers")
 @Secured("ROLE_ADMIN")
+@RequestMapping("/drivers")
 public class DriverController {
 
 	private static final String DRIVERS_VIEW = "driver/list";

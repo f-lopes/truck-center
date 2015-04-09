@@ -3,10 +3,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <br/>
+<style>
+    .nav a {
+        color: white;
+    }
+</style>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="font-weight: bold; background-color: white;">
     <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" style="color:black;" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="<c:url value="/"/>"><spring:message code="application.home"/></a></li>
 
@@ -17,17 +22,6 @@
                 <sec:authorize access="hasRole('ROLE_DRIVER')">
                     <%@include file="../menu/driverMenu.jsp" %>
                 </sec:authorize>
-
-                <li>
-                    <a href="<c:url value="?lang=fr"/>">
-                        <img src="<c:url value="/resources/img/fr.png"/>" alt="fr"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="<c:url value="?lang=en"/>">
-                        <img src="<c:url value="/resources/img/en.png"/>" alt="en"/>
-                    </a>
-                </li>
             </ul>
             <c:url var="logoutURL" value="/logout" />
             <form action="${logoutURL}" method="POST" class="navbar-form navbar-right">

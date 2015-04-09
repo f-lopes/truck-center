@@ -34,7 +34,7 @@ public class TruckCenterRestServiceImpl implements TruckCenterRestService {
 	}
 
 	public void addAlert(AlertDTO alert) throws TruckCenterRestException {
-		HttpPost httpPost = new HttpPost(this.restApiURL);
+		final HttpPost httpPost = new HttpPost(this.restApiURL);
 		httpPost.addHeader("accept", "application/json");
 
 		addAuthentication(httpPost);

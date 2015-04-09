@@ -7,6 +7,8 @@ import com.ingesup.truckcenter.repository.RoleRepository;
 import com.ingesup.truckcenter.repository.UserRepository;
 import com.ingesup.truckcenter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.mapping.Attributes2GrantedAuthoritiesMapper;
 import org.springframework.security.core.authority.mapping.SimpleAttributes2GrantedAuthoritiesMapper;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,14 +29,16 @@ public class UserServiceImpl extends BaseServiceImpl<User, String> implements Us
 
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
+	private final AuthenticationManager authenticationManager;
 	private final PasswordEncoder passwordEncoder;
 
 	private final Attributes2GrantedAuthoritiesMapper grantedAuthoritiesMapper = new SimpleAttributes2GrantedAuthoritiesMapper();
 
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
+		this.authenticationManager = authenticationManager;
 		this.passwordEncoder = passwordEncoder;
 	}
 
@@ -49,6 +53,13 @@ public class UserServiceImpl extends BaseServiceImpl<User, String> implements Us
 	@Override
 	public User getByEmail(String email) {
 		return this.userRepository.findFirstByEmail(email);
+	}
+
+	@Override
+	public User authenticate(String email, String password) {
+		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
+
+		return (User) authenticationManager.authenticate(authenticationToken).getPrincipal();
 	}
 
 	@Override
