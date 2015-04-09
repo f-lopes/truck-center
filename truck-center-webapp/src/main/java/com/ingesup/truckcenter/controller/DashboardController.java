@@ -9,6 +9,7 @@ import com.ingesup.truckcenter.service.AlertService;
 import com.ingesup.truckcenter.service.DriverService;
 import com.ingesup.truckcenter.util.MessageUtil;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.task.Task;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,18 +110,20 @@ public class DashboardController {
 					messageSource.getMessage("alert.not-found", null, LocaleContextHolder.getLocale())));
 			return "redirect:" + DASHBOARD_URL;
 		}
+		String processInstanceId = StringUtils.EMPTY;
+		Map<String, Object> processVariables = null;
 
 		final Task activeTask = this.activitiService.getCurrentTaskByBusinessKey(alertId);
 		if (activeTask == null) {
-			model.addAttribute("historicProcessInstance", this.activitiService.getEndedProcessByBusinessKey(alertId));
+			final HistoricProcessInstance historicProcessInstance = this.activitiService.getEndedProcessByBusinessKey(alertId);
+			model.addAttribute("historicProcessInstance", historicProcessInstance);
+			processVariables = historicProcessInstance.getProcessVariables();
 		} else {
-			final Map<String, Object> processVariables = activeTask.getProcessVariables();
-			if (processVariables != null) {
-				model.addAttribute("comment", this.activitiService.getProcessVariables(activeTask.getProcessInstanceId()).get(ActivitiConstants.COMMENT));
-			}
-
+			processVariables = activeTask.getProcessVariables();
 			model.addAttribute("activeTask", activeTask);
 		}
+
+		model.addAttribute("comment", processVariables.get(ActivitiConstants.COMMENT));
 		model.addAttribute("alert", alert);
 
 		return INCIDENT_BY_DRIVER_VIEW;

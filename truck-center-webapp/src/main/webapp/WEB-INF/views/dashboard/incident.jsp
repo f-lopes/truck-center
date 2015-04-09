@@ -18,6 +18,11 @@
         <br/><br/>
         Finished at :
         <fmt:formatDate value="${historicProcessInstance.endTime}" pattern="dd/MM/yyyy hh:mm" /><br/><br/>
+
+        <br/><br/>
+        <b>Comments for this incident :</b> <br/>
+
+        ${comment}
     </c:if>
 
     <c:if test="${activeTask != null}">
@@ -50,7 +55,6 @@
             <input type="hidden" name="taskId" value="${activeTask.id}"/>
             <input type="hidden" name="alertId" value="${alert.id}"/>
 
-            <!-- TODO Display comment in case of process finished ? -->
             <c:if test="${activeTask.name == 'Call driver'}">
                 Driver responded ?
                 <input name="driverResponded" type="radio" value="true" /> Yes
