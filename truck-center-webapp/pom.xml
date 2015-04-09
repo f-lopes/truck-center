@@ -127,12 +127,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.microsoft</groupId>
-			<artifactId>sql-jdbc-connector4</artifactId>
-			<version>${sql-jdbc-connector.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>

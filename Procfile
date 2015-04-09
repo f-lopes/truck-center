@@ -1,1 +1,0 @@
-web: java $JAVA_OPTS -Dspring.profiles.active=heroku -jar truck-center-webapp/target/dependency/webapp-runner.jar --port $PORT truck-center-webapp/target/truck-center-webapp*.war
