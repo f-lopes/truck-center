@@ -47,7 +47,7 @@ public class TrackerService extends Service {
             if (mLocation != null) {
                 // TODO set real truck id
                 PositionNotification position = new PositionNotification();
-                position.setDriverId(String.valueOf(1));
+                position.setDriverId("2c9191264ca03c36014ca03d51cc0001");
                 position.setLatitude(mLocation.getLatitude());
                 position.setLongitude(mLocation.getLongitude());
                 position.setDate(Calendar.getInstance().getTime().getTime());

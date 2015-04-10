@@ -57,8 +57,8 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
 
         }
 
-        Intent intent = new Intent(this, TrackerService.class);
-        startService(intent);
+        //Intent intent = new Intent(this, TrackerService.class);
+        //startService(intent);
 
     }
 

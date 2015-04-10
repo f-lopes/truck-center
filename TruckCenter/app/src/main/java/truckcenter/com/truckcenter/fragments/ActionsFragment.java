@@ -1,6 +1,7 @@
 package truckcenter.com.truckcenter.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import truckcenter.com.truckcenter.R;
+import truckcenter.com.truckcenter.service.HelpTask;
+import truckcenter.com.truckcenter.service.TrackerService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,27 +38,29 @@ public class ActionsFragment extends Fragment {
         buttonHelp = (Button) root.findViewById(R.id.button_help);
 
         buttonPause.setText("Pause");
-        buttonStop.setText("Stop");
+        buttonStop.setText("Start");
         buttonHelp.setText("Help");
 
         buttonPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Pause !", Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getActivity(), TrackerService.class);
+                getActivity().stopService(intent);
             }
         });
 
         buttonStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Stop !", Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getActivity(), TrackerService.class);
+                getActivity().startService(intent);
             }
         });
 
         buttonHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Help !", Toast.LENGTH_SHORT);
+                new HelpTask(getActivity()).execute("2c9191264ca03c36014ca03d51cc0001");
             }
         });
 

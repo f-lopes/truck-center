@@ -41,8 +41,8 @@ public class MessagesFragment extends Fragment {
     public void onStart() {
         super.onStart();
         ArrayList<TruckMessage> truckMessages = new ArrayList<>();
-        truckMessages.add(new TruckMessage("Gérard", "T'es au putes ?", new Date()));
-        truckMessages.add(new TruckMessage("Pascal", "OUI", new Date()));
+        truckMessages.add(new TruckMessage("Gérard", "Je vais au bistro !", new Date()));
+        truckMessages.add(new TruckMessage("Pascal", "Je t'y rejoins !", new Date()));
         truckMessages.add(new TruckMessage("Gérard", "Génial !", new Date()));
         messageView.setAdapter(new MessageAdapter(getActivity(), R.layout.message_adapter, truckMessages));
     }
