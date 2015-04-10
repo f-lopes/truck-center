@@ -10,6 +10,8 @@ import com.ingesup.truckcenter.service.AlertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by lopes_f on 3/29/2015.
  * <florian.lopes@outlook.com>
@@ -39,5 +41,25 @@ public class AlertServiceImpl extends BaseServiceImpl<Alert, String> implements 
 		}
 
 		return this.alertRepository.findFirstByDriver(driver);
+	}
+
+	@Override
+	public List<Alert> getByDriverId(String driverId) throws DriverNotFoundException {
+		final Driver driver = driverRepository.findOne(driverId);
+		if (driver == null) {
+			throw new DriverNotFoundException(driverId);
+		}
+
+		return this.alertRepository.findByDriver(driver);
+	}
+
+	@Override
+	public List<Alert> getNonResolvedAlerts() {
+		return this.alertRepository.findByResolved(false);
+	}
+
+	@Override
+	public List<Alert> getResolvedAlerts() {
+		return this.alertRepository.findByResolved(true);
 	}
 }

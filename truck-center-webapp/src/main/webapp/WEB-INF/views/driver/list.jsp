@@ -3,13 +3,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<html ng-app="qcmUsersApp">
+<html ng-app="qcmdriversApp">
 <head>
     <title><spring:message code="drivers.list"/> </title>
 
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body ng-controller="UserListController">
+<body ng-controller="driverListController">
 
     <div class="container">
 
@@ -25,23 +25,26 @@
         <table class="table">
             <thead>
             <tr>
+                <td>ID</td>
                 <td>Name</td>
                 <td>First name</td>
                 <td>Email</td>
-                <td>Type</td>
                 <td></td>
             </tr>
             </thead>
 
             <tbody>
-            <tr>
-                <td>
-                            ${user.lastName}
-                </td>
-                <td>${user.firstName}</td>
-                <td>${user.email}</td>
-                <td>${user.roles[0].name}</td>
-            </tr>
+            <c:forEach var="driver" items="${drivers}">
+                <tr>
+                    <td>${driver.id}</td>
+                    <td>
+                            ${driver.lastName}
+                    </td>
+                    <td>${driver.firstName}</td>
+                    <td>${driver.email}</td>
+                </tr>
+            </c:forEach>
+
             </tbody>
         </table>
 

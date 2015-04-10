@@ -13,21 +13,16 @@
 			value="${_csrf.token}" /> <input type="submit" value="login as admin" />
 	</form>
 
-	<form action="login-as-teacher" method="POST">
+<%--	<form action="login-as-driver" method="POST">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" /> <input type="submit"
-			value="login as teacher" />
-	</form>
+			value="login as driver" />
+	</form>--%>
 
-	<form action="login-as-student" method="POST">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" /> <input type="submit"
-			value="login as student" />
-	</form>
-
+	<c:url var="logoutURL" value="/logout" />
 	<form action="${logoutURL}" method="POST">
 		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" /> <input type="submit" value="Déconnexion" />
+			value="${_csrf.token}" /> <input type="submit" value="logout" />
 	</form>
 
 </body>

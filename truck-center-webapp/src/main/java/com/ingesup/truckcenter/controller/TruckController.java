@@ -65,7 +65,6 @@ public class TruckController {
 		}
 
 		final Truck newTruck = addTruckForm.getTruck();
-		newTruck.setDriver(driverService.get(addTruckForm.getDriverId()));
 		truckService.add(newTruck);
 
 		redirectAttributes.addFlashAttribute("flash", MessageUtil.returnSuccess(

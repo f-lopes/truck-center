@@ -9,4 +9,6 @@ import com.ingesup.truckcenter.model.User;
 public interface UserService extends BaseService<User, String> {
 
 	User getByEmail(String email);
+
+	User authenticate(String email, String password);
 }

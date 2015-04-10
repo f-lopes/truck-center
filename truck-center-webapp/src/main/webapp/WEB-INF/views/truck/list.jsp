@@ -19,7 +19,7 @@
     </sec:authorize>
     <h1><spring:message code="trucks.list"/></h1>
 
-    <p><a href="<c:url value="/trucks/create"/>" class="btn btn-success"><spring:message code="truck.create"/></a></p>
+    <p><a href="<c:url value="/trucks/add"/>" class="btn btn-success"><spring:message code="truck.create"/></a></p>
 
     <c:choose>
         <c:when test="${fn:length(trucks) gt 0}">

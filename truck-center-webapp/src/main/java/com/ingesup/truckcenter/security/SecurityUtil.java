@@ -11,10 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public class SecurityUtil {
 
-	public static TruckCenterUserDetails getCurrentLoggedUser() {
+	public static UserDetails getCurrentLoggedUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		return authentication == null ? null : (TruckCenterUserDetails) authentication.getPrincipal();
+		return authentication == null ? null : (UserDetails) authentication.getPrincipal();
 	}
 
 	public static String getCurrentLoggedUsername() {

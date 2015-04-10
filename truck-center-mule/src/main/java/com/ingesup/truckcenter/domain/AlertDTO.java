@@ -10,10 +10,19 @@ public class AlertDTO {
 
 	private Date date;
 
-	private int driverId;
+	private String driverId;
 
-	public AlertDTO(Date date, int driverId) {
+	public AlertDTO(Date date, String driverId) {
+
 		this.date = date;
+		this.driverId = driverId;
+	}
+
+	public String getDriverId() {
+		return driverId;
+	}
+
+	public void setDriverId(String driverId) {
 		this.driverId = driverId;
 	}
 
@@ -25,11 +34,4 @@ public class AlertDTO {
 		this.date = date;
 	}
 
-	public int getDriverId() {
-		return driverId;
-	}
-
-	public void setDriverId(int driverId) {
-		this.driverId = driverId;
-	}
 }

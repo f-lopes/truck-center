@@ -15,10 +15,10 @@ public class TruckCenterEmailServiceTask implements JavaDelegate {
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
-		final int driverId = (int) execution.getVariable(ActivitiConstants.DRIVER_ID);
+		final String driverId = (String) execution.getVariable(ActivitiConstants.DRIVER_ID);
 
 		if (logger.isInfoEnabled()) {
-			this.logger.info(String.format("Sending mail to ... for driver %d", driverId));
+			this.logger.info(String.format("Sending mail to ... for driver %s", driverId));
 		}
 	}
 }

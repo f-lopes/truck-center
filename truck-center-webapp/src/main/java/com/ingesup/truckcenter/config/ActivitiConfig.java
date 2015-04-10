@@ -1,5 +1,6 @@
 package com.ingesup.truckcenter.config;
 
+import org.activiti.engine.HistoryService;
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -47,7 +48,7 @@ public class ActivitiConfig {
 		processEngineConfiguration.setDataSource(this.dataSource);
 		processEngineConfiguration.setDatabaseType("mysql");
 		processEngineConfiguration.setDeploymentResources(getDeploymentResources());
-		processEngineConfiguration.setDatabaseSchema("truck-center");
+		processEngineConfiguration.setDatabaseSchema("truck_center");
 		processEngineConfiguration.setJpaEntityManagerFactory(this.entityManagerFactory);
 		processEngineConfiguration.setTransactionManager(dataSourceTransactionManager());
 		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
@@ -75,6 +76,11 @@ public class ActivitiConfig {
 	@Bean
 	public TaskService taskService(SpringProcessEngineConfiguration processEngineConfiguration) {
 		return processEngineConfiguration.getTaskService();
+	}
+
+	@Bean
+	public HistoryService historyService(SpringProcessEngineConfiguration processEngineConfiguration) {
+		return processEngineConfiguration.getHistoryService();
 	}
 
 	private Resource[] getDeploymentResources() {

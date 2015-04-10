@@ -28,7 +28,7 @@ import java.util.Map;
 @RequestMapping(value = "/rest")
 public class AlertsRestController {
 
-	private static final String DRIVER_STOPPED_FLOW = "";
+	private static final String DRIVER_STOPPED_FLOW = "incident_process";
 
 	private final RuntimeService runtimeService;
 	private final AlertService alertService;
@@ -47,14 +47,14 @@ public class AlertsRestController {
 
 		if (driver != null) {
 			final Alert alert = new Alert(alertDTO.getDate(), driverService.get(alertDTO.getDriverId()));
-			Alert createdAlert = alertService.add(alert);
+			final Alert createdAlert = alertService.add(alert);
 
-			Map<String, Object> processVariables = new HashMap<>();
+			final Map<String, Object> processVariables = new HashMap<>();
 			processVariables.put(ActivitiConstants.ALERT_ID, createdAlert.getId());
 			processVariables.put(ActivitiConstants.DRIVER_ID, createdAlert.getDriver().getId());
 
-			ProcessInstance processInstance =
-					this.runtimeService.startProcessInstanceByKey(DRIVER_STOPPED_FLOW, driver.getId(), processVariables);
+			final ProcessInstance processInstance =
+					this.runtimeService.startProcessInstanceByKey(DRIVER_STOPPED_FLOW, createdAlert.getId(), processVariables);
 
 			return new ResponseEntity<>(processInstance.getId(), HttpStatus.CREATED);
 		}
