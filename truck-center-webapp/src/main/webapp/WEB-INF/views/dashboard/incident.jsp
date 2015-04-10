@@ -19,6 +19,16 @@
         Finished at :
         <fmt:formatDate value="${historicProcessInstance.endTime}" pattern="dd/MM/yyyy hh:mm" /><br/><br/>
 
+        <b>Driver : </b><br/>
+        ${alert.driver.id}<br/>
+        ${alert.driver.firstName}<br/>
+        ${alert.driver.lastName}<br/>
+        ${alert.driver.email}<br/>
+
+        <b>Drived truck :</b>
+        ${alert.driver.truck.id}
+        ${alert.driver.truck.identificationNumber}
+
         <br/><br/>
         <b>Comments for this incident :</b> <br/>
 

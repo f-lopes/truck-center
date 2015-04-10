@@ -25,6 +25,7 @@
         <table class="table">
             <thead>
             <tr>
+                <td>ID</td>
                 <td>Name</td>
                 <td>First name</td>
                 <td>Email</td>
@@ -35,6 +36,7 @@
             <tbody>
             <c:forEach var="driver" items="${drivers}">
                 <tr>
+                    <td>${driver.id}</td>
                     <td>
                             ${driver.lastName}
                     </td>
