@@ -110,7 +110,6 @@ public class DashboardController {
 					messageSource.getMessage("alert.not-found", null, LocaleContextHolder.getLocale())));
 			return "redirect:" + DASHBOARD_URL;
 		}
-		String processInstanceId = StringUtils.EMPTY;
 		Map<String, Object> processVariables = null;
 
 		final Task activeTask = this.activitiService.getCurrentTaskByBusinessKey(alertId);
