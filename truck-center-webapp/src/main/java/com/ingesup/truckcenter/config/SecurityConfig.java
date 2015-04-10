@@ -1,10 +1,13 @@
 package com.ingesup.truckcenter.config;
 
+import com.ingesup.truckcenter.properties.SecurityProperties;
 import com.ingesup.truckcenter.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -64,13 +67,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Configuration
 	@Order(1)
+	@EnableConfigurationProperties(value = SecurityProperties.class)
 	public static class ApiWebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+		@Autowired
+		private SecurityProperties securityProperties;
 
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 			auth.inMemoryAuthentication()
-					.withUser("admin")
-					.password("admin")
+					.withUser(securityProperties.getBasic().getUsername())
+					.password(securityProperties.getBasic().getPassword())
 					.roles("CLIENT");
 		}
 
